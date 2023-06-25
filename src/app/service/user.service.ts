@@ -6,8 +6,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class VoteService {
+export class UserService {
 
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
-  
+
+  logout() {
+    sessionStorage.clear();
+    this.router.navigateByUrl('/login');
+  }
 }

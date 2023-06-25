@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VoteService } from 'src/app/service/vote.service';
+import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private voteService: VoteService) { }
+  constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       confirmButtonText: 'Confirm'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.voteService.logout();
+        this.userService.logout();
       }
     });
   }
