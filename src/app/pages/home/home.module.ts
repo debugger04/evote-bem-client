@@ -11,6 +11,7 @@ import { EventComponent } from './event/event.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VoteService } from 'src/app/service/vote.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from 'src/app/service/user.service';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     HttpClientModule,
+    UserService,
     VoteService
   ]
 })

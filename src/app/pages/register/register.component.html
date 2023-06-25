@@ -5,16 +5,16 @@
             <p class="login-subtitle">Please fill the required input</p>
         </div>
         <div class="login-field">
-            <form action="" class="login-form">
-                <input type="text" class="login-input" placeholder="Nama">
-                <input type="text" class="login-input" placeholder="NRP">
-                <input type="text" class="login-input" placeholder="Email">
-                <input type="password" class="login-input" placeholder="Password">
-                <select id="org" name="org" class="login-input">
-                    <option value="commitee">Commitee</option>
+            <form class="login-form" [formGroup]="registerForm">
+                <input type="text" class="login-input" placeholder="Nama" formControlName="commiteeId">
+                <input type="text" class="login-input" placeholder="NRP" formControlName="nrp">
+                <input type="email" class="login-input" placeholder="Email" formControlName="email">
+                <input type="password" class="login-input" placeholder="Password" formControlName="password">
+                <select id="org" name="org" class="login-input" formControlName="org">
+                    <option value="commitee" selected="true">Commitee</option>
                     <option value="voter">Voter</option>
                   </select>
-                <button type="submit" class="login-button">LOGIN</button>
+                <button type="submit" class="login-button" (click)="onRegister()" [disabled]="!registerForm.valid">REGISTER</button>
             </form>
         </div>
         <div class="login-footer">
