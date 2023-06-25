@@ -1,0 +1,14 @@
+.h-80 {
+    height: 80vh;
+}
+.color-white {
+    color: #fff;
+}
+.gap-32 {
+    gap: 32px;
+}
+.main-icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+}

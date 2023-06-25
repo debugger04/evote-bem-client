@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="text-center pt-3 pb-2">
+        <h3 class="text-white">Add Candidates</h3>
+    </div>
+    <div class="d-flex justify-content-evenly">
+        <div class="form-field">
+            <form (submit)="onSubmitClicked()" [formGroup]="candidateForm">
+                <div class="mb-2">
+                    <label for="candidateName" class="form-label text-main fw-bold">Name</label>
+                    <input type="text" class="form-control"  formControlName="name" id="candidateName" placeholder="Candidate Name 1 & Candidate Name 2" [(ngModel)]="candidate.name">
+                </div>
+                <div class="mb-2">
+                    <label for="candidateNumber" class="form-label text-main fw-bold">Primary Registered Number (NRP)</label>
+                    <input type="text" class="form-control"  formControlName="nrp" id="candidateNumber" placeholder="Candidate NRP 1 & Candidate NRP 2" [(ngModel)]="candidate.nrp">
+                </div>
+                <div class="mb-2">
+                    <label for="candidateFaculty" class="form-label text-main fw-bold">Faculty</label>
+                    <input type="text" class="form-control"  formControlName="faculty" id="candidateFaculty" placeholder="Candidate Faculty 1 & Candidate Faculty 2" [(ngModel)]="candidate.faculty">
+                </div>
+                <div class="mb-2">
+                    <label for="candidateMajor" class="form-label text-main fw-bold">Major</label>
+                    <input type="text" class="form-control"  formControlName="major" id="candidateMajor" placeholder="Candidate Major 1 & Candidate Major 2" [(ngModel)]="candidate.major">
+                </div>
+                <div class="mb-2">
+                    <label for="candidateYear" class="form-label text-main fw-bold">Year Class</label>
+                    <input type="text" class="form-control"  formControlName="year" id="candidateYear" placeholder="Candidate Year Class 1 & Candidate Year Class 2" [(ngModel)]="candidate.year">
+                </div>
+                <div class="mb-2">
+                    <label for="candidateVision" class="form-label text-main fw-bold">Vision & Mission</label>
+                    <input type="text" class="form-control"  formControlName="vision" id="candidateVision" placeholder="Candidate Vision" [(ngModel)]="candidate.vision">
+                </div>
+                <div class="mb-2">
+                    <label for="candidateJargon" class="form-label text-main fw-bold">Jargon</label>
+                    <input type="text" class="form-control"  formControlName="jargon" id="candidateJargon" placeholder="Candidate Jargon" [(ngModel)]="candidate.jargon">
+                </div>
+                <div class="mb-2">
+                    <label for="candidatePhoto" class="form-label text-main fw-bold">Photo</label>
+                    <input type="file" accept="image/*" class="form-control"  formControlName="photo" id="candidatePhoto" [(ngModel)]="candidate.photo" (change)="showPreview($event)">
+                </div>
+                <div class="mt-5 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <div class="card">
+                <div class="img">
+                    <img src="{{ candidate.photo === '' ? dummy : candidate.photo }}" alt="Candidates" class="img">
+                </div>
+                <h3>{{ candidate.name === "" ? "Candidate Name" : candidate.name }}</h3>
+                <h3>{{ candidate.faculty === "" ? "Candidate Faculty" : candidate.faculty }}</h3>
+                <p>{{ candidate.vision === "" ? "Candidate Vision" : candidate.vision }}</p>
+                <p>{{ candidate.jargon === "" ? "Candidate Jargon" : candidate.jargon }}</p>
+            </div>
+        </div>
+    </div>
+</div>
