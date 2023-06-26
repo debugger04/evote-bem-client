@@ -8,14 +8,14 @@
             <p class="login-subtitle">Please enter your name and password</p>
         </div>
         <div class="login-field">
-            <form action="" class="login-form">
-                <input type="text" class="login-input" placeholder="NRP">
-                <input type="text" class="login-input" placeholder="Email">
-                <input type="password" class="login-input" placeholder="Password">
-                <select id="org" name="org" class="login-input">
+            <form class="login-form" (submit)="onLogin()" [formGroup]="loginForm">
+                <input type="text" class="login-input" placeholder="NRP" formControlName="voterID">
+                <input type="text" class="login-input" placeholder="Email" formControlName="email">
+                <input type="password" class="login-input" placeholder="Password" formControlName="password">
+                <select id="org" name="org" class="login-input" formControlName="org">
                     <option value="commitee">Commitee</option>
                     <option value="voter">Voter</option>
-                  </select>
+                </select>
                 <button type="submit" class="login-button">LOGIN</button>
             </form>
         </div>

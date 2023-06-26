@@ -5,7 +5,7 @@
             <p class="login-subtitle">Please fill the required input</p>
         </div>
         <div class="login-field">
-            <form class="login-form" [formGroup]="registerForm">
+            <form class="login-form" (submit)="onRegister()" [formGroup]="registerForm">
                 <input type="text" class="login-input" placeholder="Nama" formControlName="commiteeId">
                 <input type="text" class="login-input" placeholder="NRP" formControlName="nrp">
                 <input type="email" class="login-input" placeholder="Email" formControlName="email">
@@ -14,7 +14,7 @@
                     <option value="commitee" selected="true">Commitee</option>
                     <option value="voter">Voter</option>
                   </select>
-                <button type="submit" class="login-button" (click)="onRegister()" [disabled]="!registerForm.valid">REGISTER</button>
+                <button type="submit" class="login-button" [disabled]="!registerForm.valid">REGISTER</button>
             </form>
         </div>
         <div class="login-footer">

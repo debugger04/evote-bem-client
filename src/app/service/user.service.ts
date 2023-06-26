@@ -15,6 +15,10 @@ export class UserService {
     return this.http.post(baseUrl+'admin/register', data);
   }
 
+  login(data: any): Observable<any> {
+    return this.http.post(baseUrl+'admin/login', data);
+  }
+
   logout() {
     sessionStorage.clear();
     this.router.navigateByUrl('/login');

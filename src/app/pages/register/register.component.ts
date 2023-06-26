@@ -25,8 +25,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    const data = this.registerForm.value;
-    this.userService.register(data).subscribe({
+    this.userService.register(this.registerForm.value).subscribe({
       next: (res: any) => {
         if (res.success) {
           Swal.fire(
