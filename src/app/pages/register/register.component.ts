@@ -30,8 +30,7 @@ export class RegisterComponent implements OnInit {
     if (formValue.org === 'commitee') {
       requestBody = {
         data: {
-          commiteeID: formValue.commiteeId,
-          nrp: formValue.nrp,
+          commiteeID: formValue.nrp,
           email: formValue.email,
           password: formValue.password,
           org: formValue.org,
@@ -40,8 +39,7 @@ export class RegisterComponent implements OnInit {
     } else {
       requestBody = {
         data: {
-          voterID: formValue.commiteeId,
-          nrp: formValue.nrp,
+          voterID: formValue.nrp,
           email: formValue.email,
           password: formValue.password,
           org: formValue.org,
