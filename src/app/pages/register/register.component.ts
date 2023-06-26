@@ -25,7 +25,31 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    this.userService.register(this.registerForm.value).subscribe({
+    const formValue = this.registerForm.value;
+    let requestBody = {};
+    if (formValue.org === 'commitee') {
+      requestBody = {
+        data: {
+          commiteeID: formValue.commiteeId,
+          nrp: formValue.nrp,
+          email: formValue.email,
+          password: formValue.password,
+          org: formValue.org,
+        }
+      }
+    } else {
+      requestBody = {
+        data: {
+          voterID: formValue.commiteeId,
+          nrp: formValue.nrp,
+          email: formValue.email,
+          password: formValue.password,
+          org: formValue.org,
+        }
+      }
+    }
+    
+    this.userService.register(requestBody).subscribe({
       next: (res: any) => {
         if (res.success) {
           Swal.fire(
