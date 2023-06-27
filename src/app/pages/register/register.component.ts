@@ -30,26 +30,26 @@ export class RegisterComponent implements OnInit {
     }
     console.log('token', sessionStorage.getItem('token'));
     
-    // this.userService.register(requestBody).subscribe({
-    //   next: (res: any) => {
-    //     if (res.success) {
-    //       Swal.fire(
-    //         'Sign Up Succesful!',
-    //         'Lets try to login with your new account',
-    //         'success'
-    //       );
-    //       this.router.navigateByUrl('/login');
-    //     }
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err);
-    //     Swal.fire(
-    //       'Sign Up Failed!',
-    //       `${err.message}`,
-    //       'error'
-    //     );
-    //   }
-    // });
+    this.userService.register(requestBody).subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          Swal.fire(
+            'Sign Up Succesful!',
+            'Lets try to login with your new account',
+            'success'
+          );
+          this.router.navigateByUrl('/login');
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+        Swal.fire(
+          'Sign Up Failed!',
+          `${err.message}`,
+          'error'
+        );
+      }
+    });
   }
 
 }
