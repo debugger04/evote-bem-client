@@ -29,12 +29,11 @@ export class LoginComponent implements OnInit {
     }
     this.userService.login(requestBody).subscribe({
       next: (res: any) => {
-        console.log(JSON.parse(res));
-        // const result = JSON.parse(res)
-        // if (result.jwt) {
-        //   sessionStorage.setItem('token', res.jwt);
-        //   this.router.navigateByUrl('');
-        // }
+        const result = JSON.parse(res)
+        if (result.jwt) {
+          sessionStorage.setItem('token', result.jwt);
+          this.router.navigateByUrl('');
+        }
       },
       error: (err: any) => {
         Swal.fire(
