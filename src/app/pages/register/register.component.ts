@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
-    commiteeId: new FormControl('', Validators.required),
+    userId: new FormControl('', Validators.required),
     nrp: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
@@ -25,26 +25,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    const formValue = this.registerForm.value;
-    let requestBody = {};
-    if (formValue.org === 'commitee') {
-      requestBody = {
-        data: {
-          commiteeID: formValue.nrp,
-          email: formValue.email,
-          password: formValue.password,
-          org: formValue.org,
-        }
-      }
-    } else {
-      requestBody = {
-        data: {
-          voterID: formValue.nrp,
-          email: formValue.email,
-          password: formValue.password,
-          org: formValue.org,
-        }
-      }
+    const requestBody = {
+      data: this.registerForm.value
     }
     
     this.userService.register(requestBody).subscribe({

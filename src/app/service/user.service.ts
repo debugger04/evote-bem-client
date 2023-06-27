@@ -12,7 +12,7 @@ export class UserService {
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
   register(data: any): Observable<any> {
-    return this.http.post(baseUrl+'admin/register', data);
+    return this.http.post(baseUrl+'admin/register', data, {responseType: 'text'});
   }
 
   login(data: any): Observable<any> {
