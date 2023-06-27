@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         const result = JSON.parse(res)
         if (result.jwt) {
           sessionStorage.setItem('token', result.jwt);
+          sessionStorage.setItem('role', result.org);
           this.router.navigateByUrl('');
         }
       },

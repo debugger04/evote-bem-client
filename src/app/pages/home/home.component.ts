@@ -9,9 +9,12 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
 
+  role: string = '';
+
   constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem('role') as string;
   }
 
   onLogout() {
