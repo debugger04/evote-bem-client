@@ -21,12 +21,11 @@ export class RouteGuard implements CanActivate, CanActivateChild {
     return this.authorize(state);
   }
   
-  private redirect(queryParams?: Params): void {
-    this.router.navigate(['login'], { queryParams }).finally();
+  private redirect(): void {
+    this.router.navigate(['login']).finally();
   }
 
   private authorize(state: RouterStateSnapshot): boolean {
-    const params: Params = { next: state.url };
     const authToken: boolean = sessionStorage.getItem('token') !== null;
     if (!authToken) {
       Swal.fire({
@@ -34,7 +33,7 @@ export class RouteGuard implements CanActivate, CanActivateChild {
         title: 'Oops...',
         text: 'Kamu belum ada akses untuk halaman ini!',
       });
-      this.redirect(params);
+      this.redirect();
     }
     const menus = [
       {

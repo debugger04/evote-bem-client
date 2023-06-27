@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
     const requestBody = {
       data: this.registerForm.value
     }
-    
     this.userService.register(requestBody).subscribe({
       next: (res: any) => {
         const result = JSON.parse(res);

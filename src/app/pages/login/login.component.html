@@ -9,11 +9,11 @@
         </div>
         <div class="login-field">
             <form class="login-form" (submit)="onLogin()" [formGroup]="loginForm">
-                <input type="text" class="login-input" placeholder="NRP" formControlName="voterID">
+                <input type="text" class="login-input" placeholder="NRP" formControlName="userID">
                 <input type="text" class="login-input" placeholder="Email" formControlName="email">
                 <input type="password" class="login-input" placeholder="Password" formControlName="password">
                 <select id="org" name="org" class="login-input" formControlName="org">
-                    <option value="commitee">Commitee</option>
+                    <option value="committee">Committee</option>
                     <option value="voter">Voter</option>
                 </select>
                 <button type="submit" class="login-button">LOGIN</button>
