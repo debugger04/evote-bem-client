@@ -22,7 +22,7 @@ export class NetworkInterceptor implements HttpInterceptor {
         title: 'Oops...',
         text: 'Sesi anda sudah habis',
       });
-      this.router.navigateByUrl('/auth/login')
+      this.router.navigateByUrl('/login')
     }
     return throwError(() => new Error(error.message));
   }
