@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { RequestInterceptor } from './interceptor/request.interceptor';
+import { NetworkInterceptor } from './interceptor/network.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { RequestInterceptor } from './interceptor/request.interceptor';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: RequestInterceptor,
+      useClass: NetworkInterceptor,
       multi: true
     }
   ],
