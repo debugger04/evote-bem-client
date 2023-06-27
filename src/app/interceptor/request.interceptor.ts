@@ -22,10 +22,10 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const loggedIn = JSON.parse(sessionStorage.getItem('token') || '');
-    if (loggedIn.accessToken) {
+    const loggedIn = sessionStorage.getItem('token');
+    if (loggedIn) {
       const newRequest: any = request.clone();
-      newRequest.headers = request.headers.set('Authorization', `Bearer ${loggedIn.accessToken}`);
+      newRequest.headers = request.headers.set('Authorization', `Bearer ${loggedIn}`);
       return next.handle(newRequest).pipe(
         catchError(err => this.handleError(err))
       );
