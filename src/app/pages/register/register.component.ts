@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     
     this.userService.register(requestBody).subscribe({
       next: (res: any) => {
-        console.log(res);
+        console.log(JSON.parse(res));
         if (res.success) {
           Swal.fire(
             'Sign Up Succesful!',
