@@ -13,10 +13,10 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    userId: new FormControl('', Validators.required),
+    userID: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
-    org: new FormControl('commitee', Validators.required),
+    org: new FormControl('committee', Validators.required),
   });
 
   constructor(private readonly userService: UserService, private readonly router: Router) { }
@@ -28,10 +28,10 @@ export class RegisterComponent implements OnInit {
     const requestBody = {
       data: this.registerForm.value
     }
-    console.log('token', sessionStorage.getItem('token'));
     
     this.userService.register(requestBody).subscribe({
       next: (res: any) => {
+        console.log(res);
         if (res.success) {
           Swal.fire(
             'Sign Up Succesful!',
