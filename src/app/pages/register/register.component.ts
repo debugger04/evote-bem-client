@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
     userId: new FormControl('', Validators.required),
-    nrp: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     org: new FormControl('commitee', Validators.required),
@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       error: (err: any) => {
+        console.log(err);
         Swal.fire(
           'Sign Up Failed!',
           `${err.message}`,
