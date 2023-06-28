@@ -67,7 +67,7 @@ export class EventComponent implements OnInit {
 		return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
 	}
 
-	onCreateClicked() {
+	onCreate() {
 		const requestBody = {
 			data: this.eventForm.value
 		  }

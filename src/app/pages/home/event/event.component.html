@@ -4,7 +4,7 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="form-field">
-            <form [formGroup]="eventForm">
+            <form (submit)="onCreate()" [formGroup]="eventForm">
                 <div class="mb-2">
                     <label for="eventName" class="form-label text-main fw-bold">Name</label>
                     <input type="text" class="form-control" formControlName="name" id="eventName"
