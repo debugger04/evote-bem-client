@@ -10,8 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventComponent } from './event/event.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VoteService } from 'src/app/service/vote.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from 'src/app/service/user.service';
+import { NetworkInterceptor } from 'src/app/interceptor/network.interceptor';
 
 
 @NgModule({
@@ -32,7 +33,12 @@ import { UserService } from 'src/app/service/user.service';
   providers: [
     HttpClientModule,
     UserService,
-    VoteService
+    VoteService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NetworkInterceptor,
+      multi: true
+    }
   ]
 })
 export class HomeModule { }

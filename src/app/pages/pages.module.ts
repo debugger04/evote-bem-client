@@ -5,9 +5,10 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from '../service/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NetworkInterceptor } from '../interceptor/network.interceptor';
 
 
 @NgModule({
@@ -24,7 +25,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     HttpClientModule,
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NetworkInterceptor,
+      multi: true
+    }
   ]
 })
 export class PagesModule { }

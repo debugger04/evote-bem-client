@@ -28,8 +28,19 @@ export class NetworkInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request).pipe(
-      catchError(err => this.handleError(err))
-    );
+    const loggedIn = sessionStorage.getItem('token');
+    console.log(loggedIn);
+    const check = loggedIn ? true : false;
+    if (check) {
+      const newRequest: any = request.clone();
+      newRequest.headers = request.headers.set('Authorization', `Bearer ${loggedIn}`);
+      return next.handle(newRequest).pipe(
+        catchError(err => this.handleError(err))
+      );
+    } else {
+      return next.handle(request).pipe(
+        catchError(err => this.handleError(err))
+      );
+    }
   }
 }
