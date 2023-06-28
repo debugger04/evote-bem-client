@@ -6,33 +6,33 @@ import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+	selector: 'app-event',
+	templateUrl: './event.component.html',
+	styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  fromDate: NgbDate | null = null;
-  toDate: NgbDate | null = null;
-  hoveredDate: NgbDate | null = null;
-  
-  eventForm: FormGroup = new FormGroup({
-    electionId: new FormControl(1),
-    name: new FormControl('', [Validators.required]),
-    startDate: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-	username: new FormControl(sessionStorage.getItem('username')),
-	org: new FormControl(sessionStorage.getItem('role'))
-  });
+	fromDate: NgbDate | null = null;
+	toDate: NgbDate | null = null;
+	hoveredDate: NgbDate | null = null;
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private readonly voteService: VoteService, private readonly router: Router) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
-  }
+	eventForm: FormGroup = new FormGroup({
+		electionId: new FormControl(1),
+		name: new FormControl('', [Validators.required]),
+		startDate: new FormControl('', [Validators.required]),
+		endDate: new FormControl('', [Validators.required]),
+		username: new FormControl(sessionStorage.getItem('username')),
+		org: new FormControl(sessionStorage.getItem('role'))
+	});
 
-  ngOnInit(): void {
-  }
+	constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private readonly voteService: VoteService, private readonly router: Router) {
+		this.fromDate = calendar.getToday();
+		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+	}
 
-  onDateSelection(date: NgbDate) {
+	ngOnInit(): void {
+	}
+
+	onDateSelection(date: NgbDate) {
 		if (!this.fromDate && !this.toDate) {
 			this.fromDate = date;
 		} else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
@@ -69,29 +69,30 @@ export class EventComponent implements OnInit {
 
 	onCreate() {
 		const requestBody = {
-			data: this.eventForm.value
-		  }
-		  this.voteService.createElection(requestBody).subscribe({
+			data: this.eventForm.value,
+			token: sessionStorage.getItem('token')
+		}
+		this.voteService.createElection(requestBody).subscribe({
 			next: (res: any) => {
 				console.log(res);
-			  const result = JSON.parse(res)
-			  if (result.status === 'Success!') {
-				Swal.fire(
-					result.status,
-					`${result.description}`,
-					'success'
-				);
-				this.router.navigateByUrl('/candidates');
-			  }
+				const result = JSON.parse(res)
+				if (result.status === 'Success!') {
+					Swal.fire(
+						result.status,
+						`${result.description}`,
+						'success'
+					);
+					this.router.navigateByUrl('/candidates');
+				}
 			},
 			error: (err: any) => {
-			console.log(err);
-			  Swal.fire(
-				'Oops!',
-				`${err.message}`,
-				'error'
-			  );
+				console.log(err);
+				Swal.fire(
+					'Oops!',
+					`${err.message}`,
+					'error'
+				);
 			}
-		  });
+		});
 	}
 }
