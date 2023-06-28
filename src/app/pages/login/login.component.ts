@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         if (result.jwt) {
           sessionStorage.setItem('token', result.jwt);
           sessionStorage.setItem('role', result.org);
+          sessionStorage.setItem('username', result.username);
           this.router.navigateByUrl('');
         }
       },

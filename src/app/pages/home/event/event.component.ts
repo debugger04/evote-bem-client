@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { VoteService } from 'src/app/service/vote.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-event',
@@ -9,23 +12,19 @@ import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-b
 })
 export class EventComponent implements OnInit {
   fromDate: NgbDate | null = null;
-	toDate: NgbDate | null = null;
+  toDate: NgbDate | null = null;
   hoveredDate: NgbDate | null = null;
-
-  electionEvent = {
-    name : "",
-    startDate : "",
-    endDate : ""
-  }
   
   eventForm: FormGroup = new FormGroup({
-    id: new FormControl(null),
+    electionId: new FormControl(1),
     name: new FormControl('', [Validators.required]),
     startDate: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required])
+    endDate: new FormControl('', [Validators.required]),
+	username: new FormControl(sessionStorage.getItem('username')),
+	org: new FormControl(sessionStorage.getItem('role'))
   });
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private readonly voteService: VoteService, private readonly router: Router) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -66,5 +65,31 @@ export class EventComponent implements OnInit {
 	validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
 		const parsed = this.formatter.parse(input);
 		return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+	}
+
+	onCreateClicked() {
+		const requestBody = {
+			data: this.eventForm.value
+		  }
+		  this.voteService.createElection(requestBody).subscribe({
+			next: (res: any) => {
+			  const result = JSON.parse(res)
+			  if (result.status === 'Success!') {
+				Swal.fire(
+					result.status,
+					`${result.description}`,
+					'success'
+				);
+				this.router.navigateByUrl('/candidates');
+			  }
+			},
+			error: (err: any) => {
+			  Swal.fire(
+				'Oops!',
+				`${err.message}`,
+				'error'
+			  );
+			}
+		  });
 	}
 }
