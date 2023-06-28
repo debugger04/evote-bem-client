@@ -12,7 +12,7 @@ export class VoteService {
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
   createElection(data: any) {
-    return this.http.post(baseUrl+'admin/election/create', data, {responseType: 'text'});
+    return this.http.post(baseUrl+'admin/election/create', data, {responseType: 'text', withCredentials: true});
   }
   
 }
