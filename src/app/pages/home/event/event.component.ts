@@ -73,6 +73,7 @@ export class EventComponent implements OnInit {
 		  }
 		  this.voteService.createElection(requestBody).subscribe({
 			next: (res: any) => {
+				console.log(res);
 			  const result = JSON.parse(res)
 			  if (result.status === 'Success!') {
 				Swal.fire(
@@ -84,6 +85,7 @@ export class EventComponent implements OnInit {
 			  }
 			},
 			error: (err: any) => {
+			console.log(err);
 			  Swal.fire(
 				'Oops!',
 				`${err.message}`,
