@@ -29,6 +29,7 @@ export class NetworkInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const loggedIn = sessionStorage.getItem('token');
+    console.log(loggedIn);
     const check = loggedIn ? true : false;
     if (check) {
       const newRequest: any = request.clone();
