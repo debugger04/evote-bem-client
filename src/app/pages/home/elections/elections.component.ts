@@ -31,7 +31,7 @@ export class ElectionsComponent implements OnInit {
       next: (res: any) => {
         const result = JSON.parse(res)
         if (result.status === 'SUCCESS') {
-          this.elections = result.objectBytes;
+          this.elections = JSON.parse(result.objectBytes);
           this.isLoading = false;
         }
       },
