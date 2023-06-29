@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: '**',
+    loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)
   }
 ];
 

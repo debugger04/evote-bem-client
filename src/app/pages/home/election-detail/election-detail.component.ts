@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { VoteService } from 'src/app/service/vote.service';
 
 @Component({
   selector: 'app-election-detail',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ElectionDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe({
+      next: (params) => {
+        console.log(params['id']);
+      }
+    });
   }
 
 }

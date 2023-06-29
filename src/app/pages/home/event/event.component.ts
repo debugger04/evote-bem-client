@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
+import { v4 as uuid } from 'uuid';
 
 @Component({
 	selector: 'app-event',
@@ -16,7 +17,7 @@ export class EventComponent implements OnInit {
 	hoveredDate: NgbDate | null = null;
 
 	eventForm: FormGroup = new FormGroup({
-		electionId: new FormControl(1),
+		electionId: new FormControl(uuid()),
 		name: new FormControl('', [Validators.required]),
 		startDate: new FormControl('', [Validators.required]),
 		endDate: new FormControl('', [Validators.required]),
