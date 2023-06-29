@@ -6,6 +6,7 @@ import { LandingComponent } from './landing/landing.component';
 import { ResultComponent } from './result/result.component';
 import { VotesComponent } from './votes/votes.component';
 import { EventComponent } from './event/event.component';
+import { ElectionsComponent } from './elections/elections.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'event',
         component: EventComponent
+      },
+      {
+        path: 'elections',
+        component: ElectionsComponent
       }
     ]
   }

@@ -13,6 +13,8 @@ import { VoteService } from 'src/app/service/vote.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from 'src/app/service/user.service';
 import { NetworkInterceptor } from 'src/app/interceptor/network.interceptor';
+import { ElectionsComponent } from './elections/elections.component';
+import { ElectionDetailComponent } from './election-detail/election-detail.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { NetworkInterceptor } from 'src/app/interceptor/network.interceptor';
     LandingComponent,
     ResultComponent,
     VotesComponent,
-    EventComponent
+    EventComponent,
+    ElectionsComponent,
+    ElectionDetailComponent
   ],
   imports: [
     CommonModule,

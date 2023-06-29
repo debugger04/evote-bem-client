@@ -11,6 +11,10 @@ export class VoteService {
 
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
+  getAllElection(data: any) {
+    return this.http.post(baseUrl+'admin/election', data, {responseType: 'text'});
+  }
+
   createElection(data: any) {
     return this.http.post(baseUrl+'admin/election/create', data, {responseType: 'text'});
   }
