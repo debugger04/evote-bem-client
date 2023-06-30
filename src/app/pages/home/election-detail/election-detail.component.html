@@ -4,7 +4,7 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="form-field">
-            <form [formGroup]="eventForm">
+            <form>
                 <div class="mb-2">
                     <label for="eventName" class="form-label text-main fw-bold">Name</label>
                     <input type="text" class="form-control" formControlName="name" id="eventName"
@@ -26,32 +26,17 @@
         </div>
     </div>
     <div class="content">
-        <div class="card">
+        <div *ngFor="let candidate of candidates" class="card">
             <div class="img">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAG1BMVEXMzMyWlpaxsbGcnJyqqqqjo6PFxcW3t7e+vr5Fs8QwAAABKUlEQVR4nO3Wy66DIBQFUHmo/f8vvgpN1aa1mih3stbAnMmOB0Sg6wAAAAAAAAAAAAAAAAAAAAAAAPgXMYUUazl+LC9M3akPs1yaK2V8Ky9M3WmcXzw18Oi6Ye4shzBsygtTtxrTPK1lGqfGPpQXpu43lJf3oe+ez1VZhbnH8jiTaq4vyyGVNZ9D2pTVNIZxfBvI71Rrsf62dU3EOvev8imHnOvPfSbV1jTTZQ53Wxrm/Wg4m2rqMXU0/G4ph80HOZhqKZVdtPu12qcvMJ5PNRRfDe7vPymsGzyaamdYVszuiTCGvl8+ydFUQ3H5hXfP6DRvv+lsqqEUqmd7X25N4e1APJZqat3S+kobN/fYekHMHwfyPQUAAAAAAAAAAAAAAAAAAAAAAHz1B37EBWsRO03hAAAAAElFTkSuQmCC" alt="Candidates" class="img">
+                <img src="{{ candidate.photo }}" alt="Candidates" class="img">
             </div>
-            <h3>Candidate Name</h3>
-            <h3>Candidate Faculty</h3>
-            <p>Candidate Vision</p>
-            <p>Candidate Jargon</p>
+            <h3>{{ candidate.name }}</h3>
+            <h3>{{ candidate.faculty }}</h3>
+            <p>{{ candidate.Description }}</p>
+            <p>{{ candidate.jargon }}</p>
         </div>
-        <div class="card">
-            <div class="img">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAG1BMVEXMzMyWlpaxsbGcnJyqqqqjo6PFxcW3t7e+vr5Fs8QwAAABKUlEQVR4nO3Wy66DIBQFUHmo/f8vvgpN1aa1mih3stbAnMmOB0Sg6wAAAAAAAAAAAAAAAAAAAAAAAPgXMYUUazl+LC9M3akPs1yaK2V8Ky9M3WmcXzw18Oi6Ye4shzBsygtTtxrTPK1lGqfGPpQXpu43lJf3oe+ez1VZhbnH8jiTaq4vyyGVNZ9D2pTVNIZxfBvI71Rrsf62dU3EOvev8imHnOvPfSbV1jTTZQ53Wxrm/Wg4m2rqMXU0/G4ph80HOZhqKZVdtPu12qcvMJ5PNRRfDe7vPymsGzyaamdYVszuiTCGvl8+ydFUQ3H5hXfP6DRvv+lsqqEUqmd7X25N4e1APJZqat3S+kobN/fYekHMHwfyPQUAAAAAAAAAAAAAAAAAAAAAAHz1B37EBWsRO03hAAAAAElFTkSuQmCC" alt="Candidates" class="img">
-            </div>
-            <h3>Candidate Name</h3>
-            <h3>Candidate Faculty</h3>
-            <p>Candidate Vision</p>
-            <p>Candidate Jargon</p>
-        </div>
-        <div class="card">
-            <div class="img">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAG1BMVEXMzMyWlpaxsbGcnJyqqqqjo6PFxcW3t7e+vr5Fs8QwAAABKUlEQVR4nO3Wy66DIBQFUHmo/f8vvgpN1aa1mih3stbAnMmOB0Sg6wAAAAAAAAAAAAAAAAAAAAAAAPgXMYUUazl+LC9M3akPs1yaK2V8Ky9M3WmcXzw18Oi6Ye4shzBsygtTtxrTPK1lGqfGPpQXpu43lJf3oe+ez1VZhbnH8jiTaq4vyyGVNZ9D2pTVNIZxfBvI71Rrsf62dU3EOvev8imHnOvPfSbV1jTTZQ53Wxrm/Wg4m2rqMXU0/G4ph80HOZhqKZVdtPu12qcvMJ5PNRRfDe7vPymsGzyaamdYVszuiTCGvl8+ydFUQ3H5hXfP6DRvv+lsqqEUqmd7X25N4e1APJZqat3S+kobN/fYekHMHwfyPQUAAAAAAAAAAAAAAAAAAAAAAHz1B37EBWsRO03hAAAAAElFTkSuQmCC" alt="Candidates" class="img">
-            </div>
-            <h3>Candidate Name</h3>
-            <h3>Candidate Faculty</h3>
-            <p>Candidate Vision</p>
-            <p>Candidate Jargon</p>
-        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" routerLink="/elections">Back</button>
     </div>
 </div>

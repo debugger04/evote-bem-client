@@ -17,19 +17,75 @@ export class ElectionDetailComponent implements OnInit {
 	});
 
   electionDetail: any = {
-    name: 'aa',
-    startDate: '123-123-123',
-    endDate: '123-123-123'
+    name: '',
+    startDate: '',
+    endDate: ''
   };
+
+  elections: any[] = [];
+
+  candidates: any[] = [];
   
   isLoading: boolean = false;
 
   constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getAllElectionData();
+  }
+
+  getAllElectionData() {
+    const requestBody = {
+      data: {
+        username: sessionStorage.getItem('username'),
+        org: sessionStorage.getItem('role')
+      },
+      token: sessionStorage.getItem('token')
+    }
+    this.voteService.getAllElection(requestBody).subscribe({
+      next: (res: any) => {
+        const result = JSON.parse(res)
+        if (result.status === 'SUCCESS') {
+          this.elections = JSON.parse(result.objectBytes);
+          this.getElectionDetail();
+        }
+      },
+      error: (err: any) => {
+        this.elections = [];
+      }
+    });
+  }
+
+  getElectionDetail() {
     this.route.params.subscribe({
       next: (params) => {
-        console.log(params['id']);
+        this.elections.forEach((x) => {
+          if (x.electionId == params['id']) {
+            this.electionDetail = x;
+          }
+        });
+        this.setValueToForm(this.electionDetail);
+        const requestBody = {
+          data: {
+            electionId: params['id'],
+            username: sessionStorage.getItem('username'),
+            org: sessionStorage.getItem('role')
+          },
+          token: sessionStorage.getItem('token')
+        }
+        this.voteService.getElectionDetail(requestBody).subscribe({
+          next: (res: any) => {
+            const result = JSON.parse(res)
+            if (result.status === 'SUCCESS') {
+              this.candidates =  JSON.parse(result.objectBytes);
+              this.isLoading = false;
+            }
+          },
+          error: (err: any) => {
+            this.candidates = [];
+            this.isLoading = false;
+          }
+        });
       }
     });
   }
