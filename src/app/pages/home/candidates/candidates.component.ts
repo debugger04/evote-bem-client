@@ -24,7 +24,9 @@ export class CandidatesComponent implements OnInit {
     classOf: '',
     Description: '',
     jargon: '',
-    photo: ''
+    photo: '',
+    username: sessionStorage.getItem('username'),
+    org: sessionStorage.getItem('role')
   }
   
   dummy: string ="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAG1BMVEXMzMyWlpaxsbGcnJyqqqqjo6PFxcW3t7e+vr5Fs8QwAAABKUlEQVR4nO3Wy66DIBQFUHmo/f8vvgpN1aa1mih3stbAnMmOB0Sg6wAAAAAAAAAAAAAAAAAAAAAAAPgXMYUUazl+LC9M3akPs1yaK2V8Ky9M3WmcXzw18Oi6Ye4shzBsygtTtxrTPK1lGqfGPpQXpu43lJf3oe+ez1VZhbnH8jiTaq4vyyGVNZ9D2pTVNIZxfBvI71Rrsf62dU3EOvev8imHnOvPfSbV1jTTZQ53Wxrm/Wg4m2rqMXU0/G4ph80HOZhqKZVdtPu12qcvMJ5PNRRfDe7vPymsGzyaamdYVszuiTCGvl8+ydFUQ3H5hXfP6DRvv+lsqqEUqmd7X25N4e1APJZqat3S+kobN/fYekHMHwfyPQUAAAAAAAAAAAAAAAAAAAAAAHz1B37EBWsRO03hAAAAAElFTkSuQmCC";
@@ -108,28 +110,27 @@ export class CandidatesComponent implements OnInit {
             data: this.candidate,
             token: sessionStorage.getItem('token')
           }
-          console.log(requestBody);
-          // this.voteService.createCandidate(requestBody).subscribe({
-          //   next: (res: any) => {
-          //     const result = JSON.parse(res);
-          //     if (result === "SUCCESS") {
-          //       Swal.fire(
-          //         'Success!',
-          //         result.description,
-          //         'success'
-          //       );
-          //       this.router.navigateByUrl('');
-          //     }
-          //   },
-          //   error: (err: any) => {
-          //     console.log(err);
-          //     Swal.fire(
-          //       'Oops!',
-          //       `${err.message}`,
-          //       'error'
-          //     );
-          //   }
-          // });
+          this.voteService.createCandidate(requestBody).subscribe({
+            next: (res: any) => {
+              const result = JSON.parse(res);
+              if (result === "SUCCESS") {
+                Swal.fire(
+                  'Success!',
+                  result.description,
+                  'success'
+                );
+                this.router.navigateByUrl('');
+              }
+            },
+            error: (err: any) => {
+              console.log(err);
+              Swal.fire(
+                'Oops!',
+                `${err.message}`,
+                'error'
+              );
+            }
+          });
         }
       })
     } else {
