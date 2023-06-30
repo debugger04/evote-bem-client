@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-1">
                     <label for="candidateNumber" class="form-label text-main fw-bold">Primary Registered Number (NRP)</label>
-                    <input type="text" class="form-control"  formControlName="nrp" id="candidateNumber" placeholder="Candidate NRP 1 & Candidate NRP 2" [(ngModel)]="candidate.nrp">
+                    <input type="text" class="form-control"  formControlName="candidateId" id="candidateNumber" placeholder="Candidate NRP 1 & Candidate NRP 2" [(ngModel)]="candidate.candidateId">
                 </div>
                 <div class="mb-1">
                     <label for="candidateFaculty" class="form-label text-main fw-bold">Faculty</label>
@@ -30,11 +30,11 @@
                 </div>
                 <div class="mb-1">
                     <label for="candidateYear" class="form-label text-main fw-bold">Year Class</label>
-                    <input type="text" class="form-control"  formControlName="year" id="candidateYear" placeholder="Candidate Year Class 1 & Candidate Year Class 2" [(ngModel)]="candidate.year">
+                    <input type="text" class="form-control"  formControlName="classOf" id="candidateYear" placeholder="Candidate Year Class 1 & Candidate Year Class 2" [(ngModel)]="candidate.classOf">
                 </div>
                 <div class="mb-1">
-                    <label for="candidateVision" class="form-label text-main fw-bold">Vision & Mission</label>
-                    <input type="text" class="form-control"  formControlName="vision" id="candidateVision" placeholder="Candidate Vision" [(ngModel)]="candidate.vision">
+                    <label for="candidateVision" class="form-label text-main fw-bold">Description</label>
+                    <input type="text" class="form-control"  formControlName="Description" id="candidateVision" placeholder="Candidate Description" [(ngModel)]="candidate.Description">
                 </div>
                 <div class="mb-1">
                     <label for="candidateJargon" class="form-label text-main fw-bold">Jargon</label>
@@ -53,7 +53,7 @@
                 </div>
                 <h3>{{ candidate.name === "" ? "Candidate Name" : candidate.name }}</h3>
                 <h3>{{ candidate.faculty === "" ? "Candidate Faculty" : candidate.faculty }}</h3>
-                <p>{{ candidate.vision === "" ? "Candidate Vision" : candidate.vision }}</p>
+                <p>{{ candidate.Description === "" ? "Candidate Description" : candidate.Description }}</p>
                 <p>{{ candidate.jargon === "" ? "Candidate Jargon" : candidate.jargon }}</p>
             </div>
             

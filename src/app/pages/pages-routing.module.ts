@@ -7,8 +7,6 @@ import { RouteGuard } from '../guard/route.guard';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [RouteGuard],
-    canActivateChild: [RouteGuard],
     loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)
   },
   {

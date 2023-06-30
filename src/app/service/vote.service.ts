@@ -22,5 +22,9 @@ export class VoteService {
   createElection(data: any) {
     return this.http.post(baseUrl+'admin/election/create', data, {responseType: 'text'});
   }
+
+  createCandidate(data: any) {
+    return this.http.post(baseUrl+'admin/candidate/create', data, {responseType: 'text'});
+  }
   
 }
