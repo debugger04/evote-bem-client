@@ -108,7 +108,17 @@ export class CandidatesComponent implements OnInit {
         if (result.isConfirmed) {
           const requestBody = {
             data: {
-              ...this.candidate,
+              candidateId: this.candidate.candidateId,
+              name: this.candidate.name,
+              electionId: this.candidate.electionId,
+              faculty: this.candidate.faculty,
+              major: this.candidate.major,
+              classOf: this.candidate.classOf,
+              Description: this.candidate.Description,
+              jargon: this.candidate.jargon,
+              photo: this.candidate.photo,
+              username: sessionStorage.getItem('username'),
+              org: sessionStorage.getItem('role'),
               elections: {
                   electionId: this.candidate.electionId,
                   votes: 0
