@@ -108,12 +108,11 @@ export class CandidatesComponent implements OnInit {
         if (result.isConfirmed) {
           const requestBody = {
             data: {
-              
               ...this.candidate,
               elections: [
                 {
-                    electionId: this.candidate.electionId,
-                    votes: 0
+                  electionId: this.candidate.electionId,
+                  votes: 0
                 }
               ]
             },
