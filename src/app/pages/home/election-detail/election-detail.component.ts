@@ -26,12 +26,13 @@ export class ElectionDetailComponent implements OnInit {
 
   candidates: any[] = [];
   
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
+    this.setValueToForm(this.electionDetail);
   }
 
   getAllElectionData() {
@@ -64,7 +65,6 @@ export class ElectionDetailComponent implements OnInit {
             this.electionDetail = x;
           }
         });
-        this.setValueToForm(this.electionDetail);
         const requestBody = {
           data: {
             electionId: params['id'],
