@@ -113,7 +113,7 @@ export class CandidatesComponent implements OnInit {
           this.voteService.createCandidate(requestBody).subscribe({
             next: (res: any) => {
               const result = JSON.parse(res);
-              if (result === "SUCCESS") {
+              if (result.status === "SUCCESS") {
                 Swal.fire(
                   'Success!',
                   result.description,
