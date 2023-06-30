@@ -108,27 +108,28 @@ export class CandidatesComponent implements OnInit {
             data: this.candidate,
             token: sessionStorage.getItem('token')
           }
-          this.voteService.createCandidate(requestBody).subscribe({
-            next: (res: any) => {
-              const result = JSON.parse(res);
-              if (result === "SUCCESS") {
-                Swal.fire(
-                  'Success!',
-                  result.description,
-                  'success'
-                );
-                this.router.navigateByUrl('');
-              }
-            },
-            error: (err: any) => {
-              console.log(err);
-              Swal.fire(
-                'Oops!',
-                `${err.message}`,
-                'error'
-              );
-            }
-          });
+          console.log(requestBody);
+          // this.voteService.createCandidate(requestBody).subscribe({
+          //   next: (res: any) => {
+          //     const result = JSON.parse(res);
+          //     if (result === "SUCCESS") {
+          //       Swal.fire(
+          //         'Success!',
+          //         result.description,
+          //         'success'
+          //       );
+          //       this.router.navigateByUrl('');
+          //     }
+          //   },
+          //   error: (err: any) => {
+          //     console.log(err);
+          //     Swal.fire(
+          //       'Oops!',
+          //       `${err.message}`,
+          //       'error'
+          //     );
+          //   }
+          // });
         }
       })
     } else {
