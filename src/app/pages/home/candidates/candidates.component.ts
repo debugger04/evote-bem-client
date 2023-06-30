@@ -107,7 +107,13 @@ export class CandidatesComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           const requestBody = {
-            data: this.candidate,
+            data: {
+              ...this.candidate,
+              elections: {
+                  electionId: this.candidate.electionId,
+                  votes: 0
+              }
+            },
             token: sessionStorage.getItem('token')
           }
           this.voteService.createCandidate(requestBody).subscribe({
