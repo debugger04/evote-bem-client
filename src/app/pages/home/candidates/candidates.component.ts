@@ -121,6 +121,7 @@ export class CandidatesComponent implements OnInit {
               }
             },
             error: (err: any) => {
+              console.log(err);
               Swal.fire(
                 'Oops!',
                 `${err.message}`,
