@@ -7,18 +7,20 @@
             <form>
                 <div class="mb-2">
                     <label for="eventName" class="form-label text-main fw-bold">Name</label>
-                    <input type="text" class="form-control" formControlName="name" id="eventName"
+                    <input type="text" class="form-control" formControlName="name" id="eventName" value="{{ electionDetail.name }}"
                         placeholder="Event Name" [disabled]="true">
                 </div>
                 <div class="mb-2">
                     <div class="row">
                         <div class="col-6">
                             <label for="eventName" class="form-label text-main fw-bold">Start Date</label>
-                            <input type="text" class="form-control" formControlName="startDate" id="eventStart" placeholder="Event Start" [disabled]="true">
+                            <input type="text" class="form-control" formControlName="startDate" id="eventStart" value="{{ electionDetail.eventStart }}"
+                            placeholder="Event Start" [disabled]="true">
                         </div>
                         <div class="col-6">
                             <label for="eventName" class="form-label text-main fw-bold">End Date</label>
-                            <input type="text" class="form-control" formControlName="endDate" id="eventEnd" placeholder="Event End" [disabled]="true">
+                            <input type="text" class="form-control" formControlName="endDate" id="eventEnd" value="{{ electionDetail.eventEnd }}"
+                            placeholder="Event End" [disabled]="true">
                         </div>
                     </div>
                 </div>

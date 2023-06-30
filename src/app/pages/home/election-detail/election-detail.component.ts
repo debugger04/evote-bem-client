@@ -94,9 +94,6 @@ export class ElectionDetailComponent implements OnInit {
     this.eventForm.controls['name'].disable();
     this.eventForm.controls['startDate'].disable();
     this.eventForm.controls['endDate'].disable();
-    this.eventForm.controls['name']?.setValue(detail.name);
-    this.eventForm.controls['startDate']?.setValue(detail.startDate);
-    this.eventForm.controls['endDate']?.setValue(detail.endDate);
   }
 
 }
