@@ -27,12 +27,11 @@ export class ElectionDetailComponent implements OnInit {
   constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.route.params.subscribe({
-    //   next: (params) => {
-    //     console.log(params['id']);
-    //   }
-    // });
-    this.setValueToForm(this.electionDetail);
+    this.route.params.subscribe({
+      next: (params) => {
+        console.log(params['id']);
+      }
+    });
   }
 
   setValueToForm(detail: any) {

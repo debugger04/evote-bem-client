@@ -93,7 +93,6 @@ export class CandidatesComponent implements OnInit {
   }
 
   onSubmitClicked() {
-    console.log('candidate', this.candidate);
     if (this.candidateForm.valid) {
       Swal.fire({
         title: 'Add candidate?',
@@ -107,7 +106,7 @@ export class CandidatesComponent implements OnInit {
         if (result.isConfirmed) {
           const requestBody = {
             data: this.candidate,
-            token: sessionStorage.getItem('role')
+            token: sessionStorage.getItem('token')
           }
           this.voteService.createCandidate(requestBody).subscribe({
             next: (res: any) => {
@@ -122,7 +121,6 @@ export class CandidatesComponent implements OnInit {
               }
             },
             error: (err: any) => {
-              console.log('error status', err);
               Swal.fire(
                 'Oops!',
                 `${err.message}`,
