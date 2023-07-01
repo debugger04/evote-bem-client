@@ -81,28 +81,25 @@ export class EventComponent implements OnInit {
 			},
 			token: sessionStorage.getItem('token')
 		}
-		console.log(requestBody);
-		console.log('fromDate', this.formatter.format(this.fromDate));
-		console.log('toDate', this.formatter.format(this.toDate));
-		// this.voteService.createElection(requestBody).subscribe({
-		// 	next: (res: any) => {
-		// 		const result = JSON.parse(res)
-		// 		if (result.status === 'Success!') {
-		// 			Swal.fire(
-		// 				result.status,
-		// 				`${result.description}`,
-		// 				'success'
-		// 			);
-		// 			this.router.navigateByUrl('/candidates');
-		// 		}
-		// 	},
-		// 	error: (err: any) => {
-		// 		Swal.fire(
-		// 			'Oops!',
-		// 			`${err.message}`,
-		// 			'error'
-		// 		);
-		// 	}
-		// });
+		this.voteService.createElection(requestBody).subscribe({
+			next: (res: any) => {
+				const result = JSON.parse(res)
+				if (result.status === 'Success!') {
+					Swal.fire(
+						result.status,
+						`${result.description}`,
+						'success'
+					);
+					this.router.navigateByUrl('/candidates');
+				}
+			},
+			error: (err: any) => {
+				Swal.fire(
+					'Oops!',
+					`${err.message}`,
+					'error'
+				);
+			}
+		});
 	}
 }

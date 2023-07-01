@@ -27,21 +27,18 @@
             <div class="form-field">
                 <form>
                     <div class="mb-2">
-                        <label for="eventName" class="form-label text-main fw-bold">Name</label>
-                        <input type="text" class="form-control" formControlName="name" id="eventName" value="{{ electionDetail.name }}"
-                            placeholder="Event Name" [disabled]="true">
+                        <label class="form-label text-center fw-bold">Name</label>
+                        <h3 class="text-center text-white fw-bold">{{ electionDetail.name }}</h3>
                     </div>
                     <div class="mb-2">
                         <div class="row">
                             <div class="col-6">
-                                <label for="eventName" class="form-label text-main fw-bold">Start Date</label>
-                                <input type="text" class="form-control" formControlName="startDate" id="eventStart" value="{{ electionDetail.startDate }}"
-                                placeholder="Event Start" [disabled]="true">
+                                <label class="form-label text-center fw-bold">Start Date</label>
+                                <h3 class="text-center text-white fw-bold">{{ electionDetail.startDate }}</h3>
                             </div>
                             <div class="col-6">
-                                <label for="eventName" class="form-label text-main fw-bold">End Date</label>
-                                <input type="text" class="form-control" formControlName="endDate" id="eventEnd" value="{{ electionDetail.EndDate }}"
-                                placeholder="Event End" [disabled]="true">
+                                <label class="form-label text-center fw-bold">End Date</label>
+                                <h3 class="text-center text-white fw-bold">{{ electionDetail.EndDate }}</h3>
                             </div>
                         </div>
                     </div>
