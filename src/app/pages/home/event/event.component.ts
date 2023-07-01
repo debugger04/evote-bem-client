@@ -20,7 +20,7 @@ export class EventComponent implements OnInit {
 		electionId: new FormControl(uuid()),
 		name: new FormControl('', [Validators.required]),
 		startDate: new FormControl('', [Validators.required]),
-		EndDate: new FormControl('', [Validators.required]),
+		endDate: new FormControl('', [Validators.required]),
 		username: new FormControl(sessionStorage.getItem('username')),
 		org: new FormControl(sessionStorage.getItem('role'))
 	});
@@ -74,6 +74,8 @@ export class EventComponent implements OnInit {
 			token: sessionStorage.getItem('token')
 		}
 		console.log(requestBody);
+		console.log('fromDate', this.fromDate);
+		console.log('toDate', this.toDate);
 		// this.voteService.createElection(requestBody).subscribe({
 		// 	next: (res: any) => {
 		// 		const result = JSON.parse(res)
