@@ -32,7 +32,7 @@ export class ResultComponent implements OnInit {
       data: {
         labels: names,
         datasets: [{
-          label: 'Votes',
+          label: 'Votes in Percent',
           data: votes,
           backgroundColor: [
             'rgb(255, 99, 132)',
@@ -61,9 +61,14 @@ export class ResultComponent implements OnInit {
           this.candidates =  JSON.parse(result.objectBytes);
           const dataName: any[] = [];
           const dataVote: any[] = [];
+          let totalVotes: number = 0;
+          this.candidates.forEach((x) => {
+            totalVotes += Number(x.elections[0].votes);
+          });
           this.candidates.forEach((x) => {
             dataName.push(x.name);
-            dataVote.push(x.elections[0].votes);
+            const percent = Number(x.elections[0].votes) / totalVotes * 100;
+            dataVote.push(percent)
           });
           this.instantiateChart(dataName, dataVote);
           this.isLoading = false;
