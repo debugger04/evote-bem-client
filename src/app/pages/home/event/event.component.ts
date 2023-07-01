@@ -69,37 +69,30 @@ export class EventComponent implements OnInit {
 	}
 
 	onCreate() {
-		const form = this.eventForm.value;
 		const requestBody = {
-			data: {
-				electionId: form.electionId,
-				name: form.name,
-				startDate: this.fromDate,
-				endDate: this.toDate,
-				username: sessionStorage.getItem('username'),
-				org: sessionStorage.getItem('role')
-			},
+			data: this.eventForm.value,
 			token: sessionStorage.getItem('token')
 		}
-		this.voteService.createElection(requestBody).subscribe({
-			next: (res: any) => {
-				const result = JSON.parse(res)
-				if (result.status === 'Success!') {
-					Swal.fire(
-						result.status,
-						`${result.description}`,
-						'success'
-					);
-					this.router.navigateByUrl('/candidates');
-				}
-			},
-			error: (err: any) => {
-				Swal.fire(
-					'Oops!',
-					`${err.message}`,
-					'error'
-				);
-			}
-		});
+		console.log(requestBody);
+		// this.voteService.createElection(requestBody).subscribe({
+		// 	next: (res: any) => {
+		// 		const result = JSON.parse(res)
+		// 		if (result.status === 'Success!') {
+		// 			Swal.fire(
+		// 				result.status,
+		// 				`${result.description}`,
+		// 				'success'
+		// 			);
+		// 			this.router.navigateByUrl('/candidates');
+		// 		}
+		// 	},
+		// 	error: (err: any) => {
+		// 		Swal.fire(
+		// 			'Oops!',
+		// 			`${err.message}`,
+		// 			'error'
+		// 		);
+		// 	}
+		// });
 	}
 }
