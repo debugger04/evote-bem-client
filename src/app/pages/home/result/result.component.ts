@@ -10,7 +10,7 @@ import { VoteService } from 'src/app/service/vote.service';
 })
 export class ResultComponent implements OnInit {
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   candidates: any[] = [];
 
