@@ -26,5 +26,9 @@ export class VoteService {
   createCandidate(data: any) {
     return this.http.post(baseUrl+'admin/candidate/create', data, {responseType: 'text'});
   }
+
+  castVote(data: any) {
+    return this.http.post(baseUrl+'user/vote', data, {responseType: 'text'});
+  }
   
 }

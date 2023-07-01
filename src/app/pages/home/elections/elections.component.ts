@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
 
@@ -9,11 +10,13 @@ import Swal from 'sweetalert2';
 })
 export class ElectionsComponent implements OnInit {
 
+  actionButton: string = sessionStorage.getItem('role') || '';
+
   elections: any[] = [];
 
   isLoading: boolean = true;
 
-  constructor(private readonly voteService: VoteService) { }
+  constructor(private readonly voteService: VoteService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
@@ -40,6 +43,15 @@ export class ElectionsComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  navigateToDetail(electionId: any) {
+    const org = sessionStorage.getItem('role');
+    if (org === 'committee') {
+      this.router.navigateByUrl(`/election/${electionId}`);
+    } else {
+      this.router.navigateByUrl(`/votes/${electionId}`);
+    }
   }
 
 }

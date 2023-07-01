@@ -19,7 +19,7 @@ const routes: Routes = [
         component: LandingComponent
       },
       {
-        path: 'votes',
+        path: 'votes/:id',
         component: VotesComponent
       },
       {

@@ -32,7 +32,7 @@ export class ElectionDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllElectionData();
-    this.setValueToForm(this.electionDetail);
+    this.setValueToForm();
   }
 
   getAllElectionData() {
@@ -90,7 +90,7 @@ export class ElectionDetailComponent implements OnInit {
     });
   }
 
-  setValueToForm(detail: any) {
+  setValueToForm() {
     this.eventForm.controls['name'].disable();
     this.eventForm.controls['startDate'].disable();
     this.eventForm.controls['endDate'].disable();
