@@ -15,6 +15,7 @@ import { UserService } from 'src/app/service/user.service';
 import { NetworkInterceptor } from 'src/app/interceptor/network.interceptor';
 import { ElectionsComponent } from './elections/elections.component';
 import { ElectionDetailComponent } from './election-detail/election-detail.component';
+import { BallotComponent } from './ballot/ballot.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ElectionDetailComponent } from './election-detail/election-detail.compo
     VotesComponent,
     EventComponent,
     ElectionsComponent,
-    ElectionDetailComponent
+    ElectionDetailComponent,
+    BallotComponent
   ],
   imports: [
     CommonModule,

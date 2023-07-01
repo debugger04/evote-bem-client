@@ -31,12 +31,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let election of elections">
+                <tr *ngFor="let election of displayElections">
                     <td>{{ election.name }}</td>
                     <td>{{ election.startDate }}</td>
                     <td>{{ election.EndDate }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" (click)="navigateToDetail(election.electionId)">{{ actionButton === 'committee' ? 'Detail' : 'Participate' }}</button>
+                        <button type="button" class="btn btn-primary" (click)="navigateToDetail(election.electionId)">{{ checkButtonText() }}</button>
                     </td>
                 </tr>
             </tbody>

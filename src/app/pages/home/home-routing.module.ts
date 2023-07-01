@@ -8,6 +8,7 @@ import { VotesComponent } from './votes/votes.component';
 import { EventComponent } from './event/event.component';
 import { ElectionsComponent } from './elections/elections.component';
 import { ElectionDetailComponent } from './election-detail/election-detail.component';
+import { BallotComponent } from './ballot/ballot.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'election/:id',
         component: ElectionDetailComponent
+      },
+      {
+        path: 'ballot',
+        component: BallotComponent
       }
     ]
   }

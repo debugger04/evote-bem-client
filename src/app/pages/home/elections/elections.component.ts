@@ -9,12 +9,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./elections.component.css']
 })
 export class ElectionsComponent implements OnInit {
+  
+  href = this.router.url;
 
-  actionButton: string = sessionStorage.getItem('role') || '';
+  org: string = sessionStorage.getItem('role') || '';
 
   elections: any[] = [];
 
+  displayElections: any[] = [];
+
   isLoading: boolean = true;
+
+  todayDate = new Date().toISOString().slice(0, 10);
 
   constructor(private readonly voteService: VoteService, private router: Router) { }
 
@@ -35,6 +41,7 @@ export class ElectionsComponent implements OnInit {
         const result = JSON.parse(res)
         if (result.status === 'SUCCESS') {
           this.elections = JSON.parse(result.objectBytes);
+          this.mapElectionsData();
           this.isLoading = false;
         }
       },
@@ -45,14 +52,31 @@ export class ElectionsComponent implements OnInit {
     });
   }
 
-  navigateToDetail(electionId: any) {
-    const href = this.router.url;
-    const org = sessionStorage.getItem('role');
+  mapElectionsData() {
+    this.elections.forEach((x) => {
+      if (x.startDate <= this.todayDate && x.EndDate >= this.todayDate) {
+        this.displayElections.push(x);
+      }
+    });
+  }
 
-    if (href.includes('result')) {
+  checkButtonText(): string {
+    if (this.href.includes('result')) {
+      return 'View';
+    } else {
+      if (this.org === 'committee') {
+        return 'Detail';
+      } else {
+        return 'Participate';
+      }
+    }
+  }
+
+  navigateToDetail(electionId: any) {
+    if (this.href.includes('result')) {
       this.router.navigateByUrl(`/result/${electionId}`);
     } else {
-      if (org === 'committee') {
+      if (this.org === 'committee') {
         this.router.navigateByUrl(`/election/${electionId}`);
       } else {
         this.router.navigateByUrl(`/votes/${electionId}`);
