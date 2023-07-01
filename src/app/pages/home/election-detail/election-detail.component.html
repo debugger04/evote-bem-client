@@ -27,21 +27,18 @@
             <div class="form-field">
                 <form [formGroup]="eventForm">
                     <div class="mb-2">
-                        <label for="eventName" class="form-label text-main fw-bold">Name</label>
-                        <input type="text" class="form-control" formControlName="name" id="eventName" value="{{ electionDetail.name }}"
-                        placeholder="Event Name" [disabled]="true">
+                        <label class="form-label text-center fw-bold">Name</label>
+                        <h4 class="text-white fw-semibold">{{ electionDetail.name }}</h4>
                     </div>
                     <div class="mb-2">
                         <div class="row">
                             <div class="col-6">
-                                <label for="eventName" class="form-label text-main fw-bold">Start Date</label>
-                                <input type="text" class="form-control" id="eventStart" value="{{ electionDetail.startDate }}"
-                                placeholder="Event Start" [disabled]="true">
+                                <label class="form-label text-center fw-bold">Start Date</label>
+                                <h4 class="text-white fw-semibold">{{ electionDetail.startDate }}</h4>
                             </div>
                             <div class="col-6">
-                                <label for="eventName" class="form-label text-main fw-bold">End Date</label>
-                                <input type="text" class="form-control" id="eventEnd" value="{{ electionDetail.EndDate }}"
-                                placeholder="Event End" [disabled]="true">
+                                <label class="form-label text-center fw-bold">End Date</label>
+                                <h4 class="text-white fw-semibold">{{ electionDetail.EndDate }}</h4>
                             </div>
                         </div>
                     </div>
