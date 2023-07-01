@@ -54,9 +54,10 @@ export class ElectionsComponent implements OnInit {
 
   mapElectionsData() {
     this.elections.forEach((x) => {
+      const startDate = new Date(x.startDate);
       const endDate = new Date(x.EndDate);
       const todays = new Date(this.todayDate);
-      if (endDate.getTime() <= todays.getTime()) {
+      if (startDate <= todays && endDate >= todays) {
         this.displayElections.push(x);
       }
     });
