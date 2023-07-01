@@ -46,11 +46,17 @@ export class ElectionsComponent implements OnInit {
   }
 
   navigateToDetail(electionId: any) {
+    const href = this.router.url;
     const org = sessionStorage.getItem('role');
-    if (org === 'committee') {
-      this.router.navigateByUrl(`/election/${electionId}`);
+
+    if (href.includes('result')) {
+      this.router.navigateByUrl(`/result/${electionId}`);
     } else {
-      this.router.navigateByUrl(`/votes/${electionId}`);
+      if (org === 'committee') {
+        this.router.navigateByUrl(`/election/${electionId}`);
+      } else {
+        this.router.navigateByUrl(`/votes/${electionId}`);
+      }
     }
   }
 

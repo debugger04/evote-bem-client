@@ -23,8 +23,12 @@ const routes: Routes = [
         component: VotesComponent
       },
       {
-        path: 'result',
+        path: 'result/:id',
         component: ResultComponent
+      },
+      {
+        path: 'elections/result',
+        component: ElectionsComponent
       },
       {
         path: 'candidates',

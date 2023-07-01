@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
 
@@ -24,7 +24,7 @@ export class VotesComponent implements OnInit {
 
   isLoading: boolean = true;
 
-  constructor(private readonly route: ActivatedRoute, private readonly voteService: VoteService) { }
+  constructor(private readonly route: ActivatedRoute, private readonly voteService: VoteService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
@@ -117,6 +117,7 @@ export class VotesComponent implements OnInit {
                   'Your voice has been heard!',
                   'success'
                 );
+                this.router.navigateByUrl('');
               }
             }
           },
