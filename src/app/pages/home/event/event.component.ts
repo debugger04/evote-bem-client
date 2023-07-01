@@ -69,13 +69,21 @@ export class EventComponent implements OnInit {
 	}
 
 	onCreate() {
+		const formValue = this.eventForm.value;
 		const requestBody = {
-			data: this.eventForm.value,
+			data: {
+				electionId: formValue.electionId,
+				name: formValue.name,
+				startDate: this.formatter.format(this.fromDate),
+				endDate: this.formatter.format(this.toDate),
+				username: sessionStorage.getItem('username'),
+				org: sessionStorage.getItem('role')
+			},
 			token: sessionStorage.getItem('token')
 		}
 		console.log(requestBody);
-		console.log('fromDate', this.fromDate);
-		console.log('toDate', this.toDate);
+		console.log('fromDate', this.formatter.format(this.fromDate));
+		console.log('toDate', this.formatter.format(this.toDate));
 		// this.voteService.createElection(requestBody).subscribe({
 		// 	next: (res: any) => {
 		// 		const result = JSON.parse(res)
