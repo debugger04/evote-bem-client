@@ -32,7 +32,7 @@ export class ResultComponent implements OnInit {
       data: {
         labels: names,
         datasets: [{
-          label: 'Votes in Percent',
+          label: 'Votes',
           data: votes,
           backgroundColor: [
             'rgb(255, 99, 132)',
@@ -66,7 +66,7 @@ export class ResultComponent implements OnInit {
             totalVotes += Number(x.elections[0].votes);
           });
           this.candidates.forEach((x) => {
-            dataName.push(x.name);
+            dataName.push(x.name + ' (in %)');
             const percent = Number(x.elections[0].votes) / totalVotes * 100;
             dataVote.push(percent)
           });

@@ -1,7 +1,27 @@
 <div class="text-center mb-5">
     <h2 class="fw-bold text-white">Election Result</h2>
 </div>
-<div class="container d-flex align-items-center justify-content-between">
+<div *ngIf="isLoading" class="d-flex justify-content-center mt-5 pt-5">
+    <div class="spinner-grow text-primary mx-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary mx-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success mx-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger mx-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning mx-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info mx-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="!isLoading"  class="container d-flex align-items-center justify-content-between">
     <div class="text-container">
         <h3>Perolehan Suara</h3>
         <div class="p-5" *ngFor="let candidate of candidates">
