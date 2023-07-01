@@ -57,6 +57,9 @@ export class ElectionsComponent implements OnInit {
       const startDate = new Date(x.startDate);
       const endDate = new Date(x.EndDate);
       const todays = new Date(this.todayDate);
+      console.log(startDate);
+      console.log(endDate);
+      console.log(todays);
       // if (startDate.getTime() <= todays.getTime() && endDate.getTime() >= todays.getTime()) {
         this.displayElections.push(x);
       // }
