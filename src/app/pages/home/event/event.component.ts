@@ -69,8 +69,16 @@ export class EventComponent implements OnInit {
 	}
 
 	onCreate() {
+		const form = this.eventForm.value;
 		const requestBody = {
-			data: this.eventForm.value,
+			data: {
+				electionId: form.electionId,
+				name: form.name,
+				startDate: this.fromDate,
+				endDate: this.toDate,
+				username: sessionStorage.getItem('username'),
+				org: sessionStorage.getItem('role')
+			},
 			token: sessionStorage.getItem('token')
 		}
 		this.voteService.createElection(requestBody).subscribe({
