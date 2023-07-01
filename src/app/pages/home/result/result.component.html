@@ -3,9 +3,11 @@
 </div>
 <div class="container d-flex align-items-center justify-content-between">
     <div class="text-container">
-        <h5>Bryan</h5>
-        <h5>Starif</h5>
-        <h5>Golden</h5>
+        <h3>Perolehan Suara</h3>
+        <div class="p-5" *ngFor="let candidate of candidates">
+            <h5>{{ candidate.name }}</h5>
+            <h3><span>Jumlah suara </span>{{ candidate.elections[0].votes }}</h3>
+        </div>
     </div>
     <div>
         <canvas id="canvas">{{chart}}</canvas>
