@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-votes',
@@ -106,6 +107,13 @@ export class VotesComponent implements OnInit {
             username: user,
             org: sessionStorage.getItem('role')
           },
+          ballot: {
+            ballotId: uuid(),
+            electionId: this.currentElectionId,
+            voterId: user,
+            candidateId: _candidateId,
+            createdAt: new Date()
+          },    
           token: sessionStorage.getItem('token')
         }
         this.voteService.castVote(requestBody).subscribe({
