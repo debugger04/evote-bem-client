@@ -26,8 +26,6 @@ export class EventComponent implements OnInit {
 	});
 
 	constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private readonly voteService: VoteService, private readonly router: Router) {
-		this.fromDate = calendar.getToday();
-		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
 	}
 
 	ngOnInit(): void {
