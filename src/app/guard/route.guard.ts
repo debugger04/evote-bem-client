@@ -11,21 +11,19 @@ export class RouteGuard implements CanActivate, CanActivateChild {
   constructor(private readonly router: Router) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.authorize(state);
+    route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      return this.authorize(route);
   }
   canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authorize(state);
+    childRoute: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.authorize(childRoute);
   }
   
   private redirect(): void {
     this.router.navigate(['login']).finally();
   }
 
-  private authorize(state: RouterStateSnapshot): boolean {
+  private authorize(state: ActivatedRouteSnapshot): boolean {
     const authToken: boolean = sessionStorage.getItem('token') !== null;
     if (!authToken) {
       Swal.fire({
@@ -34,37 +32,9 @@ export class RouteGuard implements CanActivate, CanActivateChild {
         text: 'Kamu belum ada akses untuk halaman ini!',
       });
       this.redirect();
+      return false;
+    } else {
+      return true;
     }
-    const menus = [
-      {
-        id: 1,
-        name: 'home',
-        location: ''
-      },
-      {
-        id: 2,
-        name: 'candidates',
-        location: 'candidates'
-      },
-      {
-        id: 3,
-        name: 'event',
-        location: 'event'
-      },
-      {
-        id: 4,
-        name: 'votes',
-        location: 'votes'
-      },
-      {
-        id: 5,
-        name: 'result',
-        location: 'result'
-      }
-    ];
-    // some -> menghasilkan boolean
-    return menus.some((m) => {
-      return state.url.indexOf(m.location) > -1;
-    })
   }
 }
