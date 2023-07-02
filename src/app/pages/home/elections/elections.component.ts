@@ -53,14 +53,18 @@ export class ElectionsComponent implements OnInit {
   }
 
   mapElectionsData() {
-    this.elections.forEach((x) => {
-      const startDate = new Date(x.startDate);
-      const endDate = new Date(x.EndDate);
-      const todays = new Date(this.todayDate);
-      if (startDate <= todays && endDate >= todays) {
-        this.displayElections.push(x);
-      }
-    });
+    if (this.org === 'committee') {
+      this.displayElections = this.elections
+    } else {
+      this.elections.forEach((x) => {
+        const startDate = new Date(x.startDate);
+        const endDate = new Date(x.EndDate);
+        const todays = new Date(this.todayDate);
+        if (startDate <= todays && endDate >= todays) {
+          this.displayElections.push(x);
+        }
+      });
+    }
   }
 
   checkButtonText(): string {
