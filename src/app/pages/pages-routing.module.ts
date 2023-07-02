@@ -13,10 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    canActivateChild: [RouteGuard],
     component: LoginComponent
   },
   {
     path: 'register',
+    canActivateChild: [RouteGuard],
     component: RegisterComponent
   },
   {
