@@ -38,9 +38,10 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
+        const resultErr = JSON.parse(err);
         Swal.fire(
           'Sign In Failed!',
-          `${err.message}`,
+          `${resultErr.message}`,
           'error'
         );
       }
