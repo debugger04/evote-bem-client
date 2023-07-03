@@ -49,6 +49,11 @@ export class RegisterComponent implements OnInit {
             'error'
           );
         }
+        Swal.fire(
+          'Sign Up Failed!',
+          `${err.message}`,
+          'error'
+        );
       }  
     });
   }
