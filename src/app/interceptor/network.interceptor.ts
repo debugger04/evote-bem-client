@@ -30,6 +30,13 @@ export class NetworkInterceptor implements HttpInterceptor {
         text: 'Session ended',
       });
       this.router.navigateByUrl('/login');
+    } else if (error.status === 409) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Username already existed',
+      });
+      this.router.navigateByUrl('/login');
     }
     return throwError(() => new Error(error.message));
   }
