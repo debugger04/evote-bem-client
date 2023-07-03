@@ -20,7 +20,7 @@ export class NetworkInterceptor implements HttpInterceptor {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Sesi anda sudah habis',
+        text: error.message,
       });
       this.router.navigateByUrl('/login')
     }
