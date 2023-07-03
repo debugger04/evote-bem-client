@@ -41,12 +41,15 @@ export class RegisterComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        Swal.fire(
-          'Sign Up Failed!',
-          `${JSON.parse(err)}`,
-          'error'
-        );
-      }
+        const error = JSON.parse(err);
+        if (error.status == 409) {
+          Swal.fire(
+            'Sign Up Failed!',
+            'Username already existed',
+            'error'
+          );
+        }
+      }  
     });
   }
 
