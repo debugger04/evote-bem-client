@@ -41,10 +41,9 @@ export class RegisterComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        console.log(err);
         Swal.fire(
           'Sign Up Failed!',
-          `${err.message}`,
+          `${err}`,
           'error'
         );
       }
