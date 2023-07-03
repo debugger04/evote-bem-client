@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       error: (err: any) => {
         Swal.fire(
           'Sign Up Failed!',
-          `${err}`,
+          `${JSON.parse(err)}`,
           'error'
         );
       }
