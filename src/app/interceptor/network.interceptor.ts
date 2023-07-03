@@ -16,13 +16,20 @@ export class NetworkInterceptor implements HttpInterceptor {
   constructor(private readonly router: Router) {}
 
   handleError(error: HttpErrorResponse): Observable<any> {
-    if (error.status === 401 || error.status === 403) {
+    if (error.status === 401) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: error.status.toString(),
+        text: 'Invalid Username or Password',
       });
-      this.router.navigateByUrl('/login')
+      this.router.navigateByUrl('/login');
+    } else if (error.status === 403) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Session ended',
+      });
+      this.router.navigateByUrl('/login');
     }
     return throwError(() => new Error(error.message));
   }
