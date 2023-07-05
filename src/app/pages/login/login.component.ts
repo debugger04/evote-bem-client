@@ -15,12 +15,25 @@ export class LoginComponent implements OnInit {
     userID: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
-    org: new FormControl('committee', Validators.required)
+    org: new FormControl(this.checkUserOrg(), Validators.required)
   });
 
   constructor(private readonly userService:UserService, private router:Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  checkUserOrg(): string {
+    const href: string = this.router.url;
+    if (href.includes('admin')) {
+      return 'admin';
+    } else if (href.includes('committee')) {
+      return 'committee';
+    }
+    return 'voter';
+  }
+
+  onForgotPassword() {
+    console.log('onForgotPassword clicked');
   }
 
   onLogin() {

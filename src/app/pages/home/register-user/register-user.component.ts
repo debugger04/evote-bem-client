@@ -5,11 +5,11 @@ import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-register-user',
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterUserComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     org: new FormControl('committee', Validators.required),
   });
 
-  constructor(private readonly userService: UserService, private readonly router: Router) { }
+  constructor(private readonly userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }

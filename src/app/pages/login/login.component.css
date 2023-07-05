@@ -32,6 +32,7 @@
 }
 .login-footer-item {
     color: #fff;
+    text-align: center;
 }
 .login-link {
     color: #000;
@@ -64,4 +65,17 @@
     background: linear-gradient(34deg, rgba(156,53,135,1) 0%, rgba(220,62,116,1) 100%, rgba(229,63,113,1) 100%, rgba(0,212,255,1) 100%);
     color: #fff;
     font-weight: bold;
+}
+.login-roles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.role-selection {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+.wd-100 {
+    width: 100px;
 }
