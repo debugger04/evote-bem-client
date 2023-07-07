@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MailService } from 'src/app/service/mail.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     org: new FormControl(this.checkUserOrg(), Validators.required)
   });
 
-  constructor(private readonly userService:UserService, private router:Router) { }
+  constructor(private readonly userService:UserService, private router:Router, private readonly mailService:MailService) { }
 
   ngOnInit(): void {}
 
@@ -33,56 +34,38 @@ export class LoginComponent implements OnInit {
   }
 
   onForgotPassword() {
-    console.log('onForgotPassword clicked');
+    this.mailService.sendMail({}).subscribe({
+      next: (res: any) => {
+        console.log('Success send');
+      },
+      error: (err: any) => {
+        console.log('Fail send');
+      }
+    });
   }
 
   onLogin() {
-    // const requestBody = {
-    //   data: this.loginForm.value
-    // }
-    // this.userService.login(requestBody).subscribe({
-    //   next: (res: any) => {
-    //     const result = JSON.parse(res)
-    //     if (result.jwt) {
-    //       // sessionStorage.setItem('token', result.jwt);
-    //       // sessionStorage.setItem('role', result.org);
-    //       // sessionStorage.setItem('username', result.username);
-    //       // this.router.navigateByUrl('');
-    //     }
-    //   },
-    //   error: (err: any) => {
-    //     const resultErr = JSON.parse(err);
-    //     Swal.fire(
-    //       'Sign In Failed!',
-    //       'Incorrect Username or Password',
-    //       'error'
-    //     );
-    //   }
-    // });
-    const nodemailer = require('nodemailer');
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'ferdiannovendra16@gmail.com',
-        pass: 'tfltbkyelkiwybnh'
-      }
-    });
-    
-    const mailOptions = {
-      from: 'no-reply@starifvote',
-      to: 'williamthehartman16@gmail.com',
-      subject: 'Password Reset From Vote',
-      text: 'Ganteng betul aku ges'
-    };
-    
-    transporter.sendMail(mailOptions, function(error: any, info: any){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
+    const requestBody = {
+      data: this.loginForm.value
+    }
+    this.userService.login(requestBody).subscribe({
+      next: (res: any) => {
+        const result = JSON.parse(res)
+        if (result.jwt) {
+          sessionStorage.setItem('token', result.jwt);
+          sessionStorage.setItem('role', result.org);
+          sessionStorage.setItem('username', result.username);
+          this.router.navigateByUrl('');
+        }
+      },
+      error: (err: any) => {
+        const resultErr = JSON.parse(err);
+        Swal.fire(
+          'Sign In Failed!',
+          'Incorrect Username or Password',
+          'error'
+        );
       }
     });
   }
-
 }
