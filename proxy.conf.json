@@ -1,7 +1,7 @@
 [
   {
     "context": ["/api"],
-    "target": "http://localhost:6969",
+    "target": "http://localhost:3001",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -9,7 +9,7 @@
   },
   {
     "context": ["/api"],
-    "target": "http://localhost:3001",
+    "target": "http://localhost:6969",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
