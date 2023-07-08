@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MailService } from 'src/app/service/mail.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    const href: string = this.router.url;
     const requestBody = {
       data: this.loginForm.value
     }
@@ -59,7 +61,37 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        const resultErr = JSON.parse(err);
+        if (href.includes('admin')) {
+          const requestBody = {
+            data : {
+              name: 'admin',
+              userID:uuid(),
+              email: 'admin@evote.com',
+              password: 'adminpw',
+              org: 'adminops',
+            }
+          }
+          this.userService.register(requestBody).subscribe({
+            next: (res: any) => {
+              Swal.fire(
+                'Hi Admin!',
+                'We realize that this is your first time logging in, please try to login again after the page is reloaded',
+                'question'
+              );
+            },
+            error: (err: any) => {
+              Swal.fire(
+                'Sign In Failed!',
+                'Incorrect Username or Password',
+                'error'
+              );
+            },
+            complete: () => {
+              window.location.reload();
+              return;
+            }
+          });
+        }
         Swal.fire(
           'Sign In Failed!',
           'Incorrect Username or Password',
