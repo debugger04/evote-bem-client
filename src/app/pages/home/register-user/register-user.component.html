@@ -5,17 +5,21 @@
     <div class="d-flex align-items-center justify-content-center">
         <div class="form-field">
             <form (submit)="onRegister()" [formGroup]="registerForm">
-                <div class="mb-1">
+                <div class="mb-3">
                     <label for="candidateName" class="form-label text-main fw-bold">Name</label>
-                    <input type="text" class="form-control" placeholder="Nama" formControlName="name" placeholder="Candidate Name 1 & Candidate Name 2">
+                    <input type="text" class="form-control" placeholder="Nama" formControlName="name" placeholder="Name">
                 </div>
-                <div class="mb-1">
+                <div class="mb-3">
+                    <label for="candidateName" class="form-label text-main fw-bold">NRP</label>
+                    <input type="text" class="form-control" placeholder="userID" formControlName="name" placeholder="NRP">
+                </div>
+                <div class="mb-3">
                     <label for="candidateFaculty" class="form-label text-main fw-bold">Email</label>
-                    <input type="text" class="form-control" placeholder="Email" formControlName="email" placeholder="Candidate Faculty 1 & Candidate Faculty 2">
+                    <input type="text" class="form-control" placeholder="Email" formControlName="email" placeholder="Email">
                 </div>
-                <div class="mb-1">
+                <div class="mb-3">
                     <label for="candidateMajor" class="form-label text-main fw-bold">Password</label>
-                    <input type="text" class="form-control" placeholder="Password" formControlName="password" placeholder="Candidate Major 1 & Candidate Major 2">
+                    <input type="text" class="form-control" placeholder="Password" formControlName="password" placeholder="Password">
                 </div>
                 <div class="mt-5 d-flex justify-content-end">
                     <button [disabled]="!registerForm.valid" type="submit" class="btn btn-primary">Submit</button>

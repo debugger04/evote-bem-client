@@ -14,7 +14,7 @@ export class RegisterUserComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    userID: new FormControl(uuid(), Validators.required),
+    userID: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     org: new FormControl(this.checkRegisterOrg(), Validators.required),
