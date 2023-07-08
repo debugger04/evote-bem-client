@@ -16,7 +16,8 @@ export class RegisterUserComponent implements OnInit {
     name: new FormControl('', Validators.required),
     userID: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
+    password: new FormControl('', Validators.required),
+    org: new FormControl(this.checkRegisterOrg())
   });
 
   constructor(private readonly userService: UserService, private router: Router) { }
@@ -34,21 +35,19 @@ export class RegisterUserComponent implements OnInit {
 
   onRegister() {
     const requestBody = {
-      data: {
-        org: this.checkRegisterOrg(),
-        ...this.registerForm.value
-      }
+      data: this.registerForm.value
     }
+    console.log(requestBody);
     this.userService.register(requestBody).subscribe({
       next: (res: any) => {
         const result = JSON.parse(res);
         if (result.success) {
           Swal.fire(
             'Sign Up Succesful!',
-            'Lets try to login with your new account',
+            'Account Successfully Created',
             'success'
           );
-          this.router.navigateByUrl('/login');
+          window.location.reload();
         }
       },
       error: (err: any) => {
