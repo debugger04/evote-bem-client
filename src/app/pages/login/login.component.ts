@@ -14,7 +14,6 @@ import { v4 as uuid } from 'uuid';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({
-    userID: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     org: new FormControl(this.checkUserOrg(), Validators.required)
@@ -27,7 +26,7 @@ export class LoginComponent implements OnInit {
   checkUserOrg(): string {
     const href: string = this.router.url;
     if (href.includes('admin')) {
-      return 'admin';
+      return 'adminops';
     } else if (href.includes('committee')) {
       return 'committee';
     }
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    const href: string = this.router.url;
     const requestBody = {
       data: this.loginForm.value
     }
@@ -61,43 +59,48 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        if (href.includes('admin')) {
-          const requestBody = {
-            data : {
-              name: 'admin',
-              userID:uuid(),
-              email: 'admin@evote.com',
-              password: 'adminpw',
-              org: 'adminops',
-            }
-          }
-          this.userService.register(requestBody).subscribe({
-            next: (res: any) => {
-              Swal.fire(
-                'Hi Admin!',
-                'We realize that this is your first time logging in, please try to login again after the page is reloaded',
-                'question'
-              );
-            },
-            error: (err: any) => {
-              Swal.fire(
-                'Sign In Failed!',
-                'Incorrect Username or Password',
-                'error'
-              );
-            },
-            complete: () => {
-              window.location.reload();
-              return;
-            }
-          });
-        }
-        Swal.fire(
-          'Sign In Failed!',
-          'Incorrect Username or Password',
-          'error'
-        );
+        this.onErrorHandling();
       }
     });
+  }
+
+  onErrorHandling() {
+    const href: string = this.router.url;
+    if (href.includes('admin')) {
+      const requestBody = {
+        data : {
+          name: 'admin',
+          userID: uuid(),
+          email: 'admin@evote.com',
+          password: 'adminpw',
+          org: 'adminops',
+        }
+      }
+      this.userService.register(requestBody).subscribe({
+        next: (res: any) => {
+          Swal.fire(
+            'Hi Admin!',
+            'We realize that this is your first time logging in, please try to login again after the page is reloaded',
+            'question'
+          );
+        },
+        error: (err: any) => {
+          Swal.fire(
+            'Sign In Failed!',
+            'Incorrect Username or Password',
+            'error'
+          );
+        },
+        complete: () => {
+          window.location.reload();
+          return;
+        }
+      });
+    }
+    Swal.fire(
+      'Sign In Failed!',
+      'Incorrect Username or Password',
+      'error'
+    );
   }
 }
