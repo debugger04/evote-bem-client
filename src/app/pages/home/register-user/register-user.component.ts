@@ -16,8 +16,7 @@ export class RegisterUserComponent implements OnInit {
     name: new FormControl('', Validators.required),
     userID: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
-    org: new FormControl(this.checkRegisterOrg(), Validators.required),
+    password: new FormControl('', Validators.required)
   });
 
   constructor(private readonly userService: UserService, private router: Router) { }
@@ -35,7 +34,10 @@ export class RegisterUserComponent implements OnInit {
 
   onRegister() {
     const requestBody = {
-      data: this.registerForm.value
+      data: {
+        org: this.checkRegisterOrg(),
+        ...this.registerForm.value
+      }
     }
     this.userService.register(requestBody).subscribe({
       next: (res: any) => {
