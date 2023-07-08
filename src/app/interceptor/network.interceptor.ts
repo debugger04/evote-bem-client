@@ -17,6 +17,8 @@ export class NetworkInterceptor implements HttpInterceptor {
 
   handleError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
+      console.log('dari interceptor');
+      
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

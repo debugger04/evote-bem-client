@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
+        console.log('dari component', err);
         this.onErrorHandling();
       }
     });
