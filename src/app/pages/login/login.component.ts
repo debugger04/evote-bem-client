@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        console.log('dari component', err);
         this.onErrorHandling();
       }
     });
@@ -84,17 +83,15 @@ export class LoginComponent implements OnInit {
             'We realize that this is your first time logging in, please try to login again after the page is reloaded',
             'question'
           );
+          window.location.reload();
+          return;
         },
         error: (err: any) => {
           Swal.fire(
-            'Sign In Failed!',
+            'Something\'s not right',
             'Incorrect Username or Password',
             'error'
           );
-        },
-        complete: () => {
-          window.location.reload();
-          return;
         }
       });
     }

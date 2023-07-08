@@ -17,14 +17,12 @@ export class NetworkInterceptor implements HttpInterceptor {
 
   handleError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
-      console.log('dari interceptor');
-      
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Invalid Username or Password',
       });
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('committee/login');
     } else if (error.status === 403) {
       Swal.fire({
         icon: 'error',
