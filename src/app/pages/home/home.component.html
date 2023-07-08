@@ -16,18 +16,18 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" routerLink="/elections/result">Result</a>
                 </li>
-                <li class="nav-item dropdown" *ngIf="role === 'committee'">
+                <li class="nav-item dropdown" *ngIf="role !== 'voter'">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Menu
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="/candidates">Add Candidates</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" routerLink="/event">Start Election</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" routerLink="/elections">See All Elections</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" routerLink="/register">Add User</a></li>
+                        <li *ngIf="role === 'committee'"><a class="dropdown-item" routerLink="/candidates">Add Candidates</a></li>
+                        <li *ngIf="role === 'committee'"><hr class="dropdown-divider"></li>
+                        <li *ngIf="role === 'committee'"><a class="dropdown-item" routerLink="/event">Start Election</a></li>
+                        <li *ngIf="role === 'committee'"><hr class="dropdown-divider"></li>
+                        <li *ngIf="role !== 'voter'"><a class="dropdown-item" routerLink="/elections">See All Elections</a></li>
+                        <li *ngIf="role !== 'voter'"><hr class="dropdown-divider"></li>
+                        <li *ngIf="role !== 'voter'"><a class="dropdown-item" routerLink="/register">Add User</a></li>
                     </ul>
                 </li>
             </ul>
