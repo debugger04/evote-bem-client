@@ -59,7 +59,12 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        this.onErrorHandling();
+        
+        Swal.fire(
+          'Sign In Failed!',
+          'Incorrect Username or Password',
+          'error'
+        );
       }
     });
   }
@@ -71,7 +76,7 @@ export class LoginComponent implements OnInit {
         data : {
           name: 'admin',
           userID: uuid(),
-          email: 'admin@evote.com',
+          email: 'admin@evote.bem.com',
           password: 'adminpw',
           org: 'adminops',
         }
@@ -95,10 +100,5 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-    Swal.fire(
-      'Sign In Failed!',
-      'Incorrect Username or Password',
-      'error'
-    );
   }
 }

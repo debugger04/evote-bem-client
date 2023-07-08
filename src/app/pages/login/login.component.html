@@ -16,6 +16,7 @@
         </div>
         <div class="login-footer">
             <p class="login-footer-item">Forgot password? <span><a (click)="onForgotPassword()" class="login-link fw-bold">click here</a></span></p>
+            <p class="login-footer-item">First time login? <span><a (click)="onErrorHandling()" class="login-link fw-bold">click here</a></span></p>
             <div class="login-roles">
                 <p class="login-footer-item mt-3">Not {{ checkUserOrg() }}?</p>
                 <div *ngIf="checkUserOrg() === 'voter'" class="role-selection">

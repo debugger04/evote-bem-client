@@ -22,7 +22,7 @@ export class NetworkInterceptor implements HttpInterceptor {
         title: 'Oops...',
         text: 'Invalid Username or Password',
       });
-      this.router.navigateByUrl('committee/login');
+      this.router.navigateByUrl('/login');
     } else if (error.status === 403) {
       Swal.fire({
         icon: 'error',
