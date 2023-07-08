@@ -36,11 +36,8 @@
 .login-link {
     color: #000;
 }
-.login-field {
-    width: 40vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.form-field {
+    width: 70vh;
 }
 .login-form {
     width: 40vh;

@@ -53,11 +53,7 @@ const routes: Routes = [
         component: BallotComponent
       },
       {
-        path: 'admin/register',
-        component: RegisterUserComponent
-      },
-      {
-        path: 'committee/register',
+        path: 'register',
         component: RegisterUserComponent
       }
     ]

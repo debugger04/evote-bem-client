@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
+import {v4 as uuid} from 'uuid';
 
 @Component({
   selector: 'app-register-user',
@@ -13,15 +14,23 @@ export class RegisterUserComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    userID: new FormControl('', Validators.required),
+    userID: new FormControl(uuid(), Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
-    org: new FormControl('committee', Validators.required),
+    org: new FormControl(this.checkRegisterOrg(), Validators.required),
   });
 
   constructor(private readonly userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  checkRegisterOrg(): string {
+    const sess = sessionStorage.getItem('role');
+    if (sess === 'admin') {
+      return 'committee';
+    }
+    return 'voter';
   }
 
   onRegister() {
