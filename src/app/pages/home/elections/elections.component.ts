@@ -54,7 +54,7 @@ export class ElectionsComponent implements OnInit {
   }
 
   mapElectionsData() {
-    if (this.org === 'committee') {
+    if (this.org !== 'voter') {
       this.displayElections = this.elections
     } else {
       this.elections.forEach((x) => {
@@ -72,7 +72,7 @@ export class ElectionsComponent implements OnInit {
     if (this.href.includes('result')) {
       return 'View';
     } else {
-      if (this.org === 'committee') {
+      if (this.org !== 'voter') {
         return 'Detail';
       } else {
         return 'Participate';
@@ -84,7 +84,7 @@ export class ElectionsComponent implements OnInit {
     if (this.href.includes('result')) {
       this.router.navigateByUrl(`/result/${electionId}`);
     } else {
-      if (this.org === 'committee') {
+      if (this.org !== 'voter') {
         this.router.navigateByUrl(`/election/${electionId}`);
       } else {
         this.router.navigateByUrl(`/votes/${electionId}`);
