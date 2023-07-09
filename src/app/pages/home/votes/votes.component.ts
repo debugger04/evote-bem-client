@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
 import { v4 as uuid } from 'uuid';
@@ -25,7 +26,7 @@ export class VotesComponent implements OnInit {
 
   isLoading: boolean = true;
 
-  constructor(private readonly route: ActivatedRoute, private readonly voteService: VoteService, private router: Router) { }
+  constructor(private readonly route: ActivatedRoute, private readonly voteService: VoteService, private router: Router, private readonly userService: UserService) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
@@ -34,8 +35,8 @@ export class VotesComponent implements OnInit {
   getAllElectionData() {
     const requestBody = {
       data: {
-        username: sessionStorage.getItem('username'),
-        org: sessionStorage.getItem('role')
+        username: this.userService.getUsername(),
+        org: this.userService.getRole()
       },
       token: sessionStorage.getItem('token')
     }
@@ -65,8 +66,8 @@ export class VotesComponent implements OnInit {
         const requestBody = {
           data: {
             electionId: this.currentElectionId,
-            username: sessionStorage.getItem('username'),
-            org: sessionStorage.getItem('role')
+            username: this.userService.getUsername(),
+            org: this.userService.getRole()
           },
           token: sessionStorage.getItem('token')
         }
@@ -98,14 +99,14 @@ export class VotesComponent implements OnInit {
       confirmButtonText: 'Yes, I will vote!'
     }).then((result) => {
       if (result.isConfirmed) {
-        const user = sessionStorage.getItem('username');
+        const user = this.userService.getUsername();
         const requestBody = {
           data: {
             electionId: this.currentElectionId,
             userId: user,
             candidateId: _candidateId,
             username: user,
-            org: sessionStorage.getItem('role')
+            org: this.userService.getRole()
           },
           // ballot: {
           //   ballotId: uuid(),

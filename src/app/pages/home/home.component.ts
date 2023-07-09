@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
-    this.role = sessionStorage.getItem('role') as string;
+    this.role = this.userService.getRole();
   }
 
   onLogout() {

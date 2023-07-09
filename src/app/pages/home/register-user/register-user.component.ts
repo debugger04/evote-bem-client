@@ -26,7 +26,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   checkRegisterOrg(): string {
-    const sess = sessionStorage.getItem('role');
+    const sess = this.userService.getRole();
     if (sess === 'adminops') {
       return 'committee';
     }

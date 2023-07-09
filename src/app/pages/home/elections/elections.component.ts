@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +13,7 @@ export class ElectionsComponent implements OnInit {
   
   href = this.router.url;
 
-  org: string = sessionStorage.getItem('role') || '';
+  org: string = this.userService.getRole() || '';
 
   elections: any[] = [];
 
@@ -22,7 +23,7 @@ export class ElectionsComponent implements OnInit {
 
   todayDate = new Date().toISOString().slice(0, 10);
 
-  constructor(private readonly voteService: VoteService, private router: Router) { }
+  constructor(private readonly voteService: VoteService, private router: Router, private readonly userService: UserService) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
@@ -31,8 +32,8 @@ export class ElectionsComponent implements OnInit {
   getAllElectionData() {
     const requestBody = {
       data: {
-        username: sessionStorage.getItem('username'),
-        org: sessionStorage.getItem('role')
+        username: this.userService.getUsername(),
+        org: this.userService.getRole()
       },
       token: sessionStorage.getItem('token')
     }

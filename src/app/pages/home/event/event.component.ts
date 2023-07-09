@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/service/user.service';
 import { VoteService } from 'src/app/service/vote.service';
 import Swal from 'sweetalert2';
 import { v4 as uuid } from 'uuid';
@@ -21,11 +22,11 @@ export class EventComponent implements OnInit {
 		name: new FormControl('', [Validators.required]),
 		startDate: new FormControl('', [Validators.required]),
 		endDate: new FormControl('', [Validators.required]),
-		username: new FormControl(sessionStorage.getItem('username')),
-		org: new FormControl(sessionStorage.getItem('role'))
+		username: new FormControl(this.userService.getUsername()),
+		org: new FormControl(this.userService.getRole())
 	});
 
-	constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private readonly voteService: VoteService, private readonly router: Router) {
+	constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private readonly voteService: VoteService, private readonly router: Router, private readonly userService: UserService) {
 	}
 
 	ngOnInit(): void {
@@ -74,8 +75,8 @@ export class EventComponent implements OnInit {
 				name: formValue.name,
 				startDate: this.formatter.format(this.fromDate),
 				endDate: this.formatter.format(this.toDate),
-				username: sessionStorage.getItem('username'),
-				org: sessionStorage.getItem('role')
+				username: this.userService.getUsername(),
+				org: this.userService.getRole()
 			},
 			token: sessionStorage.getItem('token')
 		}

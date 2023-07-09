@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js/auto';
+import { UserService } from 'src/app/service/user.service';
 import { VoteService } from 'src/app/service/vote.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ResultComponent implements OnInit {
 
   chart: any = null;
 
-  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute) { }
+  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute, private readonly userService: UserService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -49,8 +50,8 @@ export class ResultComponent implements OnInit {
     const requestBody = {
       data: {
         electionId: electionId,
-        username: sessionStorage.getItem('username'),
-        org: sessionStorage.getItem('role')
+        username: this.userService.getUsername(),
+        org: this.userService.getRole()
       },
       token: sessionStorage.getItem('token')
     }

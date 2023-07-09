@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 import { VoteService } from 'src/app/service/vote.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class ElectionDetailComponent implements OnInit {
   
   isLoading: boolean = true;
 
-  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute, private readonly router: Router) { }
+  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute, private readonly router: Router, private readonly userService: UserService) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
@@ -39,8 +40,8 @@ export class ElectionDetailComponent implements OnInit {
   getAllElectionData() {
     const requestBody = {
       data: {
-        username: sessionStorage.getItem('username'),
-        org: sessionStorage.getItem('role')
+        username: this.userService.getUsername(),
+        org: this.userService.getRole()
       },
       token: sessionStorage.getItem('token')
     }
@@ -74,8 +75,8 @@ export class ElectionDetailComponent implements OnInit {
         const requestBody = {
           data: {
             electionId: params['id'],
-            username: sessionStorage.getItem('username'),
-            org: sessionStorage.getItem('role')
+            username: this.userService.getUsername(),
+            org: this.userService.getRole()
           },
           token: sessionStorage.getItem('token')
         }
