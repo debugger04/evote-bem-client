@@ -70,6 +70,15 @@ const routes: Routes = [
         } 
       },
       {
+        path: 'elections/vote',
+        component: ElectionsComponent,
+        data: {
+          roles: [
+            'voter'
+          ]
+        }, 
+      },
+      {
         path: 'elections',
         component: ElectionsComponent,
         data: {
