@@ -22,39 +22,92 @@ const routes: Routes = [
       },
       {
         path: 'votes/:id',
-        component: VotesComponent
+        component: VotesComponent,
+        data: {
+          roles: [
+            'voter'
+          ]
+        }, 
       },
       {
         path: 'result/:id',
-        component: ResultComponent
+        component: ResultComponent,
+        data: {
+          roles: [
+            'voter',
+            'committee',
+            'adminops'
+          ]
+        } 
       },
       {
         path: 'elections/result',
-        component: ElectionsComponent
+        component: ElectionsComponent,
+        data: {
+          roles: [
+            'voter',
+            'committee',
+            'adminops'
+          ]
+        } 
       },
       {
         path: 'candidates',
-        component: CandidatesComponent
+        component: CandidatesComponent,
+        data: {
+          roles: [
+            'committee'
+          ]
+        } 
       },
       {
         path: 'event',
-        component: EventComponent
+        component: EventComponent,
+        data: {
+          roles: [
+            'committee'
+          ]
+        } 
       },
       {
         path: 'elections',
-        component: ElectionsComponent
+        component: ElectionsComponent,
+        data: {
+          roles: [
+            'committee',
+            'adminops'
+          ]
+        } 
       },
       {
         path: 'election/:id',
-        component: ElectionDetailComponent
+        component: ElectionDetailComponent,
+        data: {
+          roles: [
+            'committee',
+            'adminops'
+          ]
+        } 
       },
       {
         path: 'ballot/:joint_id',
-        component: BallotComponent
+        component: BallotComponent,
+        data: {
+          roles: [
+            'committee',
+            'adminops'
+          ]
+        } 
       },
       {
         path: 'register',
-        component: RegisterUserComponent
+        component: RegisterUserComponent,
+        data: {
+          roles: [
+            'committee',
+            'adminops'
+          ]
+        } 
       }
     ]
   }

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { baseUrl } from "./util/helper.util";
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,25 @@ export class UserService {
   logout() {
     sessionStorage.clear();
     this.router.navigateByUrl('/login');
+  }
+
+  isLoggedIn(): boolean {
+    const loggedIn = sessionStorage.getItem('token');
+    if (loggedIn) {
+      return true;
+    }
+    return false;
+  }
+
+  getRole() {
+    const token = sessionStorage.getItem('token') || '';
+    const decoded: any = jwtDecode(token);
+    return decoded.orgname;
+  }
+
+  getUsername() {
+    const token = sessionStorage.getItem('token') || '';
+    const decoded: any = jwtDecode(token);
+    return decoded.username;
   }
 }
