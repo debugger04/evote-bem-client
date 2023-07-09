@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VoteService } from 'src/app/service/vote.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { VoteService } from 'src/app/service/vote.service';
   styleUrls: ['./election-detail.component.css']
 })
 export class ElectionDetailComponent implements OnInit {
+
+  electionId: string = '';
 
   eventForm: FormGroup = new FormGroup({
 		name: new FormControl('', [Validators.required]),
@@ -28,7 +30,7 @@ export class ElectionDetailComponent implements OnInit {
   
   isLoading: boolean = true;
 
-  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute) { }
+  constructor(private readonly voteService: VoteService, private readonly route: ActivatedRoute, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.getAllElectionData();
@@ -56,9 +58,14 @@ export class ElectionDetailComponent implements OnInit {
     });
   }
 
+  onNavigateToBallot(candidateId: any) {
+    this.router.navigateByUrl(`/ballot/${candidateId}&${this.electionId}`);
+  }
+
   getElectionDetail() {
     this.route.params.subscribe({
       next: (params) => {
+        this.electionId = params['id'];
         this.elections.forEach((x) => {
           if (x.electionId == params['id']) {
             this.electionDetail = x;

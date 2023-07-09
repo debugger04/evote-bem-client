@@ -30,5 +30,9 @@ export class VoteService {
   castVote(data: any) {
     return this.http.post(baseUrl+'user/vote', data, {responseType: 'text'});
   }
+
+  getBallot(data: any) {
+    return this.http.post(baseUrl+'/user/get-voters', data, {responseType: 'text'});
+  }
   
 }

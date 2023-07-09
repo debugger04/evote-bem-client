@@ -49,7 +49,7 @@ const routes: Routes = [
         component: ElectionDetailComponent
       },
       {
-        path: 'ballot',
+        path: 'ballot/:joint_id',
         component: BallotComponent
       },
       {
