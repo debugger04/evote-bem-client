@@ -108,13 +108,13 @@ export class VotesComponent implements OnInit {
             username: user,
             org: this.userService.getRole()
           },
-          // ballot: {
-          //   ballotId: uuid(),
-          //   electionId: this.currentElectionId,
-          //   voterId: user,
-          //   candidateId: _candidateId,
-          //   createdAt: new Date()
-          // },
+          ballot: {
+            ballotId: uuid(),
+            electionId: this.currentElectionId,
+            voterId: user,
+            candidateId: _candidateId,
+            createdAt: new Date()
+          },
           token: sessionStorage.getItem('token')
         }
         this.voteService.castVote(requestBody).subscribe({
