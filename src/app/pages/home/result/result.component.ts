@@ -64,11 +64,11 @@ export class ResultComponent implements OnInit {
           const dataVote: any[] = [];
           let totalVotes: number = 0;
           this.candidates.forEach((x) => {
-            totalVotes += Number(x.elections[0].votes);
+            totalVotes += Number(x.elections ? x.elections[0].votes : 0)
           });
           this.candidates.forEach((x) => {
             dataName.push(x.name + ' (in %)');
-            const percent = Number(x.elections[0].votes) / totalVotes * 100;
+            const percent = Number((x.elections ? x.elections[0].votes : 0) / totalVotes * 100)
             dataVote.push(percent)
           });
           this.instantiateChart(dataName, dataVote);

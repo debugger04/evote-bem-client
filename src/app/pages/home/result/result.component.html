@@ -26,7 +26,7 @@
         <h3>Perolehan Suara</h3>
         <div class="p-5" *ngFor="let candidate of candidates">
             <h5>{{ candidate.name }}</h5>
-            <h3><span>Jumlah suara </span>{{ candidate.elections[0].votes }}</h3>
+            <h3><span>Jumlah suara </span>{{ candidate.elections ? candidate.elections[0].votes : 0 }}</h3>
         </div>
     </div>
     <div>
