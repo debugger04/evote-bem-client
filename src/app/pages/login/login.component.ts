@@ -53,6 +53,11 @@ export class LoginComponent implements OnInit {
         const result = JSON.parse(res)
         if (result.jwt) {
           sessionStorage.setItem('token', result.jwt);
+          Swal.fire(
+            'Welcome!',
+            'Let your voice be heard!',
+            'success'
+          );
           this.router.navigateByUrl('');
         }
       },
@@ -66,7 +71,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onErrorHandling() {
+  adminFirstLogin() {
     const href: string = this.router.url;
     if (href.includes('admin')) {
       const requestBody = {

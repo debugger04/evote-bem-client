@@ -127,6 +127,13 @@ export class VotesComponent implements OnInit {
                   'success'
                 );
                 this.router.navigateByUrl('');
+              } else {
+                Swal.fire(
+                  'Hold on!',
+                  'You can only vote once!',
+                  'error'
+                );
+                this.router.navigateByUrl('');
               }
             }
           },
