@@ -20,8 +20,20 @@
         </div>
     </div>
     <div *ngIf="!isLoading">
-        <div class="text-center">
+        <div class="text-center mt-5">
             <h2 class="fw-bold text-white">{{ electionDetail.name }}</h2>
+            <div class="mb-2">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label text-center fw-bold">Start Date</label>
+                        <h4 class="text-white fw-semibold">{{ electionDetail.startDate }}</h4>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label text-center fw-bold">End Date</label>
+                        <h4 class="text-white fw-semibold">{{ electionDetail.EndDate }}</h4>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="content">
             <div *ngFor="let candidate of candidates" class="card">
