@@ -20,6 +20,12 @@ export class NetworkInterceptor implements HttpInterceptor {
       this.router.navigateByUrl('/login');
     } else if (error.status === 403) {
       this.router.navigateByUrl('/login');
+    } else if (error.status === 409) {
+      Swal.fire(
+        'Register Failed',
+        'Indentities is already exist',
+        'error'
+      );
     }
     return throwError(() => new Error(error.message));
   }
