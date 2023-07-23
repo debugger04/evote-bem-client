@@ -21,7 +21,7 @@ export class NetworkInterceptor implements HttpInterceptor {
     } else if (error.status === 403) {
       this.router.navigateByUrl('/login');
     } else if (error.status === 409) {
-      this.router.navigateByUrl('/login');
+      window.location.reload();
     }
     return throwError(() => new Error(error.message));
   }
