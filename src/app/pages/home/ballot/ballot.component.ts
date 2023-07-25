@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { VoteService } from 'src/app/service/vote.service';
 
@@ -17,7 +17,7 @@ export class BallotComponent implements OnInit {
 
   ballots: any[] = [];
 
-  constructor(private readonly route: ActivatedRoute, private readonly voteService: VoteService, private readonly userService: UserService) { }
+  constructor(private readonly route: ActivatedRoute, private readonly voteService: VoteService, private readonly userService: UserService, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -57,5 +57,9 @@ export class BallotComponent implements OnInit {
         this.isLoading = false;
       },
     })
+  }
+
+  onNavigateBackToDetail() {
+    this.router.navigateByUrl(`/election/${this.electionId}`);
   }
 }
