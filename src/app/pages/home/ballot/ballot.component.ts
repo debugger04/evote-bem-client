@@ -42,6 +42,7 @@ export class BallotComponent implements OnInit {
       },
       token: sessionStorage.getItem('token')
     }
+    console.log(requestBody);
     this.voteService.getBallot(requestBody).subscribe({
       next: (res: any) => {
         const result = JSON.parse(res)
