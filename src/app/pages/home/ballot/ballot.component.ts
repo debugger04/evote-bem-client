@@ -23,7 +23,7 @@ export class BallotComponent implements OnInit {
     this.route.params.subscribe({
       next: (params: any) => {
         const joinId = params['joint_id'];
-        const splitted = joinId.split('&');
+        const splitted = joinId.split('&&');
         this.candidateId = splitted[0];
         this.electionId = splitted[1];
 
@@ -42,7 +42,6 @@ export class BallotComponent implements OnInit {
       },
       token: sessionStorage.getItem('token')
     }
-    console.log(requestBody);
     this.voteService.getBallot(requestBody).subscribe({
       next: (res: any) => {
         const result = JSON.parse(res)

@@ -64,7 +64,7 @@ export class ElectionDetailComponent implements OnInit {
   }
 
   onNavigateToBallot(candidateId: any) {
-    this.router.navigateByUrl(`/ballot/${candidateId}&${this.electionId}`);
+    this.router.navigateByUrl(`/ballot/${candidateId}&&${this.electionId}`);
   }
 
   getElectionDetail() {
