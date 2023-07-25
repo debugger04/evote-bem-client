@@ -32,7 +32,7 @@ export class VoteService {
   }
 
   getBallot(data: any) {
-    return this.http.post(baseUrl+'/user/get-voters', data, {responseType: 'text'});
+    return this.http.post(baseUrl+'user/get-voters', data, {responseType: 'text'});
   }
   
 }
