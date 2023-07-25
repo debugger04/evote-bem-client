@@ -54,6 +54,7 @@
                 <h3>{{ candidate.faculty }}</h3>
                 <p>{{ candidate.Description }}</p>
                 <p>{{ candidate.jargon }}</p>
+                <button *ngIf="getCurrentRole() === 'committee'" type="button" (click)="onNavigateToBallot(candidate.candidateId)">Ballot</button>
             </div>
         </div>
         <div class="d-flex justify-content-end">

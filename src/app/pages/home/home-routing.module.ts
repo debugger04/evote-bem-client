@@ -98,16 +98,16 @@ const routes: Routes = [
           ]
         } 
       },
-      // {
-      //   path: 'ballot/:joint_id',
-      //   component: BallotComponent,
-      //   data: {
-      //     roles: [
-      //       'committee',
-      //       'adminops'
-      //     ]
-      //   } 
-      // },
+      {
+        path: 'ballot/:joint_id',
+        component: BallotComponent,
+        data: {
+          roles: [
+            'committee',
+            'adminops'
+          ]
+        } 
+      },
       {
         path: 'register',
         component: RegisterUserComponent,

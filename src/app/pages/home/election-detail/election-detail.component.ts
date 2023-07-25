@@ -37,6 +37,10 @@ export class ElectionDetailComponent implements OnInit {
     this.getAllElectionData();
   }
 
+  getCurrentRole() {
+    return this.userService.getRole();
+  }
+
   getAllElectionData() {
     const requestBody = {
       data: {

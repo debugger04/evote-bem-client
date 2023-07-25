@@ -24,16 +24,14 @@
         <table class="table text-white">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
+                    <th scope="col">Ballot Number</th>
+                    <th scope="col">Created Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let election of displayBallot">
-                    <td>{{ election.name }}</td>
-                    <td>{{ election.startDate }}</td>
-                    <td>{{ election.EndDate }}</td>
+                <tr *ngFor="let ballot of ballots">
+                    <td>{{ ballot.ballotId }}</td>
+                    <td>{{ ballot.createdAt }}</td>
                 </tr>
             </tbody>
         </table>
