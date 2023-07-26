@@ -34,14 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   onForgotPassword() {
-    this.mailService.sendMail({}).subscribe({
-      next: (res: any) => {
-        console.log('Success send');
-      },
-      error: (err: any) => {
-        console.log('Fail send');
-      }
-    });
+    Swal.fire(
+      'Forgot Password',
+      'Please Contact Your Admin to Change Password at +62 812-7663-871',
+      'question'
+    );
   }
 
   onLogin() {
