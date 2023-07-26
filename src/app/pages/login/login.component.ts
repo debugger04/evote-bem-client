@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   onForgotPassword() {
     Swal.fire(
       'Forgot Password',
-      'Please Contact Your Admin to Change Password at +62 812-7663-871',
+      'Please Contact Your Admin to Change Password at<br><b>+62 812-7663-871</b>',
       'question'
     );
   }
